@@ -985,3 +985,908 @@ footer {
     border-radius: 4px;
     overflow: hidden;
 }
+
+
+
+/* -----------------------------------------------Adjust Base Mobile Styles */
+@media (max-width: 768px) {
+    :root {
+        --space-xxl: 2rem;
+        --space-xl: 1.5rem;
+        --space-lg: 1rem;
+        --space-md: 0.75rem;
+    }
+    
+    body {
+        font-size: 15px;
+    }
+    
+    /* Optimize side menu for mobile */
+    .side-menu {
+        width: 45px;
+    }
+    
+    .main-content {
+        margin-left: 45px;
+        width: calc(100% - 45px);
+    }
+    
+    .logo {
+        position: absolute;
+        top: 15px;
+        left: 50%;
+        transform: translateX(-50%); /* Center the logo */
+        z-index: 10;
+        width: auto;
+        max-width: 120px; /* Limit width on mobile */
+    }
+    
+    .logo-image {
+        height: auto;
+        width: 100%;
+        max-height: 60px; /* Control height */
+    }
+    
+    /* Hero section optimizations */
+    .hero {
+        height: auto;
+        min-height: 100vh;
+    }
+    
+    .hero-split {
+        flex-direction: column;
+    }
+    
+    .hero-text {
+        padding: calc(var(--space-xxl) + 100px) var(--space-lg) var(--space-lg);
+        text-align: center;
+    }
+    
+    .hero-text h3 {
+        font-size: 2.8rem;
+    }
+    
+    .hero-text h2 {
+        font-size: 1.3rem;
+    }
+    
+    .hero-image {
+        height: 35vh;
+    }
+    
+    /* Content sections optimizations */
+    .what-is-section,
+    .factory-made-section,
+    .applications-section,
+    .benefits-section {
+        padding: var(--space-xl) var(--space-md);
+    }
+    
+    .what-is-section h2,
+    .factory-made-section h2,
+    .section-header h2 {
+        font-size: 1.8rem;
+        text-align: center;
+    }
+    
+    .content-wrapper, 
+    .diagram-wrapper {
+        padding: 0 var(--space-sm);
+    }
+    
+    /* Benefits section for mobile */
+    .benefit-card {
+        padding: var(--space-lg);
+    }
+    
+    /* Footer optimizations */
+    footer {
+        padding: var(--space-xl) var(--space-md) var(--space-md);
+    }
+    
+    .footer-content {
+        gap: var(--space-lg);
+    }
+    
+    /* Navigation menu optimizations */
+    .nav-menu {
+        width: 85vw;
+    }
+    
+    .nav-menu nav ul li {
+        margin-bottom: var(--space-sm);
+    }
+    
+    .nav-menu nav ul li a {
+        font-size: 1.1rem;
+        padding: var(--space-xs) 0;
+    }
+}
+
+/* Further optimize for extra small screens */
+@media (max-width: 480px) {
+    .hero-text h3 {
+        font-size: 2.2rem;
+    }
+    
+    .hero-text h2 {
+        font-size: 1.1rem;
+    }
+    
+    .logo-image {
+        height: 150px;
+    }
+    
+    .applications-grid,
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .application-card,
+    .benefit-card {
+        max-width: 100%;
+    }
+    
+    /* Make the menu toggle more thumb-friendly */
+    .menu-toggle {
+        padding: var(--space-xs);
+    }
+    
+    .hamburger {
+        width: 22px;
+        height: 16px;
+    }
+    
+    /* Make the chat widget smaller and more accessible */
+    .chat-widget {
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    .chat-bubble {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .chat-panel {
+        width: 90vw;
+        height: 350px;
+        bottom: 60px;
+        right: 0;
+    }
+}
+
+/* Touch-friendly improvements */
+@media (max-width: 768px) {
+    /* Increase touch target sizes */
+    .nav-menu nav ul li a,
+    .footer-links ul li a,
+    .social-links a,
+    .menu-toggle,
+    .chat-bubble {
+        padding: 8px;
+    }
+    
+    /* Add better loading for images on mobile */
+    .image-placeholder {
+        min-height: 150px;
+    }
+    
+    /* Improved menu toggle for mobile */
+    .hamburger span {
+        height: 2px;
+        margin: 1px 0;
+    }
+    
+    /* Better spacing for forms on mobile */
+    .form-group input,
+    .form-group textarea,
+    .newsletter-form input,
+    .newsletter-form button {
+        padding: 12px;
+        font-size: 16px; /* Prevents iOS zoom on focus */
+    }
+    
+    /* Better navigation overlay for mobile */
+    .overlay.active {
+        backdrop-filter: blur(2px);
+    }
+    
+    /* Optimize tap targets in applications and benefits sections */
+    .application-card,
+    .benefit-card {
+        cursor: pointer;
+    }
+    
+    /* Fix for iOS sticky hover states */
+    .application-card:hover,
+    .benefit-card:hover {
+        transform: none;
+    }
+    
+    /* Add active states for touch instead */
+    .application-card:active,
+    .benefit-card:active {
+        transform: scale(0.98);
+    }
+}
+
+/* Fix for iPhone notch/dynamic island */
+@media screen and (max-width: 896px) {
+    .hero-text {
+        padding-top: max(calc(var(--space-xxl) + 100px), env(safe-area-inset-top) + 120px);
+        padding-left: max(var(--space-lg), env(safe-area-inset-left) + var(--space-sm));
+        padding-right: max(var(--space-lg), env(safe-area-inset-right) + var(--space-sm));
+    }
+    
+    .side-menu {
+        padding-top: max(var(--space-md), env(safe-area-inset-top));
+        padding-bottom: max(var(--space-md), env(safe-area-inset-bottom));
+    }
+}
+
+/* Add smooth scrolling behavior on all devices */
+html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+
+/* Mobile-only and Desktop-only utility classes */
+.mobile-only {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .mobile-only {
+        display: block;
+    }
+    
+    .desktop-only {
+        display: none;
+    }
+}
+
+/* Hero mobile optimization */
+@media (max-width: 768px) {
+    .hero-cta {
+        margin-top: var(--space-lg);
+    }
+    
+    .hero-button {
+        display: inline-block;
+        padding: 10px 24px;
+        background-color: var(--primary-green);
+        color: var(--white);
+        border-radius: 4px;
+        font-family: var(--heading-font);
+        font-weight: 600;
+        text-transform: uppercase;
+        transition: background-color 0.3s ease;
+    }
+    
+    .hero-button:hover, 
+    .hero-button:active {
+        background-color: var(--secondary-green);
+        color: var(--white);
+    }
+    
+    /* Add gradient overlay to ensure text remains readable */
+    .hero-text {
+        position: relative;
+        z-index: 1;
+    }
+    
+    .hero-text::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 100%);
+        z-index: -1;
+    }
+}
+
+/* Mobile Navigation Quick Buttons */
+.mobile-nav-buttons {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .mobile-nav-buttons {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: var(--white);
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 90;
+        opacity: 0;
+        transform: translateY(100%);
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    
+    .mobile-nav-buttons.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    .mobile-nav-button {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 5px;
+        color: var(--primary-green);
+        text-decoration: none;
+        font-size: 0.8rem;
+    }
+    
+    .mobile-nav-button i {
+        font-size: 1.2rem;
+        margin-bottom: 4px;
+    }
+    
+    .mobile-nav-button:active {
+        background-color: var(--very-light-green);
+    }
+    
+    /* Adjust footer padding to account for mobile nav buttons */
+    footer {
+        padding-bottom: calc(var(--space-lg) + 60px);
+    }
+}
+
+/* Enhanced Chat Widget for Mobile */
+@media (max-width: 768px) {
+    .chat-panel {
+        width: 85vw;
+        max-width: 320px;
+        right: 10px;
+    }
+    
+    .chat-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px;
+    }
+    
+    .close-chat-panel {
+        color: var(--white);
+        font-size: 1.2rem;
+        background: none;
+        border: none;
+    }
+    
+    .chat-body {
+        padding: 15px;
+    }
+    
+    .quick-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 15px;
+    }
+    
+    .quick-actions button {
+        background-color: var(--very-light-green);
+        color: var(--primary-green);
+        border: none;
+        padding: 12px;
+        border-radius: 4px;
+        font-family: var(--body-font);
+        font-weight: 500;
+        text-align: left;
+    }
+    
+    .quick-actions button:active {
+        background-color: var(--light-green);
+    }
+}
+
+/* Better Touch Feedback */
+@media (max-width: 768px) {
+    a:active, button:active, .menu-toggle:active, .application-card:active, .benefit-card:active {
+        opacity: 0.7;
+    }
+    
+    /* Increase tap target size */
+    .nav-menu nav ul li a {
+        padding: 12px 0;
+    }
+    
+    .footer-links ul li a {
+        padding: 8px 0;
+        display: block;
+    }
+    
+    /* Improved form elements for touch */
+    input, textarea, button {
+        font-size: 16px; /* Prevents iOS zoom */
+    }
+    
+    /* Adjust chat widget position to avoid interference with mobile nav */
+    .chat-widget {
+        bottom: 70px;
+    }
+}
+
+/* iPhone X+ Notch Support */
+@supports (padding: max(0px)) {
+    @media (max-width: 768px) {
+        .mobile-nav-buttons {
+            padding-bottom: max(10px, env(safe-area-inset-bottom));
+            height: max(60px, calc(50px + env(safe-area-inset-bottom)));
+        }
+        
+        .chat-widget {
+            bottom: max(70px, calc(70px + env(safe-area-inset-bottom)));
+        }
+    }
+}
+
+/* Loading State Optimizations */
+@media (max-width: 768px) {
+    .image-placeholder {
+        background-color: var(--very-light-green);
+    }
+    
+    /* Add loading state for images */
+    .lazy-image {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .lazy-image.loaded {
+        opacity: 1;
+    }
+}
+
+/* Improve form experience on mobile */
+@media (max-width: 768px) {
+    .newsletter-form {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .newsletter-form input {
+        width: 100%;
+        padding: 12px;
+    }
+    
+    .newsletter-form button {
+        width: 100%;
+        padding: 12px;
+    }
+}
+
+
+/* ----------------------------------------------------Product Hero Section -------------------------------------------------*/
+
+
+.product-hero {
+    display: flex;
+    background-color: var(--light-gray);
+    padding: var(--space-xxl) 0;
+}
+
+.product-hero-text {
+    flex: 1;
+    padding: 0 var(--space-xxl);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.product-hero-image {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 var(--space-xxl);
+}
+
+.product-hero-image img {
+    max-width: 100%;
+    height: auto;
+    max-height: 500px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+.product-hero-text h2 {
+    font-size: 2.5rem;
+    color: var(--primary-green);
+    margin-bottom: var(--space-lg);
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+
+.product-hero-text p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: var(--dark-gray);
+}
+
+/* Panel Details Gallery */
+.panel-details-section {
+    padding: var(--space-xxl);
+    background-color: var(--white);
+}
+
+.panel-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: var(--space-xl);
+    margin-top: var(--space-xl);
+}
+
+.detail-card {
+    background-color: var(--light-gray);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.detail-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.detail-image {
+    height: 200px;
+    overflow: hidden;
+    background-color: var(--white);
+}
+
+.detail-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.detail-card:hover .detail-image img {
+    transform: scale(1.05);
+}
+
+.detail-card h3 {
+    padding: var(--space-md) var(--space-md) var(--space-xs);
+    font-size: 1.1rem;
+    color: var(--primary-green);
+    text-align: center;
+}
+
+.detail-card p {
+    padding: 0 var(--space-md) var(--space-md);
+    font-size: 0.9rem;
+    color: var(--medium-gray);
+    text-align: center;
+}
+
+/* Panel Features */
+.panel-features {
+    padding: var(--space-xxl);
+    background-color: var(--very-light-green);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+    gap: var(--space-xl);
+    margin-top: var(--space-xl);
+}
+
+.feature-item {
+    display: flex;
+    gap: var(--space-lg);
+    padding: var(--space-lg);
+    background-color: var(--white);
+    border-radius: 4px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+    font-size: 2rem;
+    color: var(--primary-green);
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.feature-content h3 {
+    font-size: 1.1rem;
+    color: var(--primary-green);
+    margin-bottom: var(--space-sm);
+    text-transform: uppercase;
+}
+
+.feature-content p {
+    font-size: 0.95rem;
+    color: var(--dark-gray);
+    line-height: 1.6;
+}
+
+/* Technical Specifications */
+.specs-table-container {
+    margin-top: var(--space-xl);
+    overflow-x: auto;
+}
+
+.specs-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--white);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.specs-table th,
+.specs-table td {
+    padding: var(--space-md) var(--space-lg);
+    text-align: left;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.specs-table th {
+    background-color: var(--primary-green);
+    color: var(--white);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.specs-table tr:last-child td {
+    border-bottom: none;
+}
+
+.specs-table tr:nth-child(even) {
+    background-color: var(--very-light-green);
+}
+
+.specs-table td:first-child {
+    font-weight: 600;
+    color: var(--primary-green);
+    width: 30%;
+}
+
+/* Installation Process */
+.installation-section {
+    padding: var(--space-xxl);
+    background-color: var(--white);
+}
+
+.installation-steps {
+    margin-top: var(--space-xl);
+}
+
+.step-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-lg);
+    padding: var(--space-lg);
+    background-color: var(--light-gray);
+    border-radius: 4px;
+    margin-bottom: var(--space-lg);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.step-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    background-color: var(--primary-green);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.step-content h3 {
+    font-size: 1.1rem;
+    color: var(--primary-green);
+    margin-bottom: var(--space-sm);
+}
+
+.step-content p {
+    font-size: 0.95rem;
+    color: var(--dark-gray);
+    line-height: 1.6;
+}
+
+/* Applications Section for Products Page */
+.applications-section {
+    padding: var(--space-xxl);
+    background-color: var(--light-gray);
+}
+
+.applications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-xl);
+    margin-top: var(--space-xl);
+}
+
+.application-card {
+    background-color: var(--white);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.application-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.application-image {
+    height: 200px;
+    background-color: var(--light-green);
+    overflow: hidden;
+    position: relative;
+}
+
+.application-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.application-card:hover .application-image img {
+    transform: scale(1.05);
+}
+
+.application-card h3 {
+    padding: var(--space-md) var(--space-md) var(--space-xs);
+    font-size: 1.1rem;
+    color: var(--primary-green);
+    text-align: center;
+}
+
+.application-card p {
+    padding: 0 var(--space-md) var(--space-md);
+    font-size: 0.9rem;
+    color: var(--medium-gray);
+    text-align: center;
+}
+
+/* CTA Section Specific to Products */
+.cta-section {
+    padding: var(--space-xxl);
+    text-align: center;
+    background-color: var(--primary-green);
+    color: var(--white);
+}
+
+.cta-section h2 {
+    font-size: 2rem;
+    color: var(--white);
+    margin-bottom: var(--space-md);
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+
+.cta-section p {
+    font-size: 1.2rem;
+    color: var(--light-green);
+    margin-bottom: var(--space-xl);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: var(--space-md) var(--space-xl);
+    background-color: var(--white);
+    color: var(--primary-green);
+    border-radius: 4px;
+    font-family: var(--heading-font);
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: var(--light-green);
+    color: var(--primary-green);
+    transform: translateY(-3px);
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .product-hero {
+        flex-direction: column;
+    }
+    
+    .product-hero-text,
+    .product-hero-image {
+        padding: var(--space-lg);
+    }
+    
+    .product-hero-text {
+        order: 1;
+    }
+    
+    .product-hero-image {
+        order: 2;
+        margin-top: var(--space-lg);
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .detail-card h3 {
+        font-size: 1rem;
+    }
+    
+    .feature-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .feature-icon {
+        margin-bottom: var(--space-md);
+    }
+    
+    .step-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .step-number {
+        margin-bottom: var(--space-md);
+    }
+}
+
+@media (max-width: 576px) {
+    .product-hero-text h2 {
+        font-size: 1.8rem;
+    }
+    
+    .detail-card {
+        max-width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .specs-table th,
+    .specs-table td {
+        padding: var(--space-sm);
+        font-size: 0.85rem;
+    }
+    
+    .cta-section h2 {
+        font-size: 1.5rem;
+    }
+}
