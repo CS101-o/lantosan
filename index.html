@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Advanced Walling Systems | YourWall</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/mobile-optimization.css">
     <script src="js/sideMenu.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,39 +21,40 @@
                 <span></span>
                 <span></span>
             </div>
-            <div class="menu-label">MENU</div>
+            <div class="menu-label desktop-only">MENU</div>
         </div>
         
         <div class="language-selector">
             <i class="fas fa-globe"></i>
-            <span>English</span>
+            <span class="desktop-only">English</span>
         </div>
         
         <div class="social-links">
             <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
             <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#" aria-label="YouTube" class="desktop-only"><i class="fab fa-youtube"></i></a>
         </div>
     </div>
     
     <!-- Main Content Area -->
     <div class="main-content">
         <!-- Header with Logo -->
-        
         <div class="logo">
-            <a href="main.html">
-                <img src="images/wall-logo.jpg" alt="Wall Logo" class="logo-image">
+            <a href="index.html">
+                <img src="images/wall-logo.jpg" alt="YourWall Logo" class="logo-image">
             </a>
         </div>
         
-        
         <!-- Full Screen Hero Section -->
-        <section class="hero">
+        <section id="hero" class="hero">
             <div class="hero-split">
                 <div class="hero-text">
                     <h3>ADVANCED<br>WALL SYSTEMS</h3>
                     <h2>TRANSFORMING THE CONSTRUCTION INDUSTRY</h2>
+                    <div class="hero-cta mobile-only">
+                        <a href="#what-is" class="hero-button">Learn More</a>
+                    </div>
                 </div>
                 <div class="hero-image">
                     <!-- Replace with actual image -->
@@ -62,7 +64,7 @@
         </section>
         
         <!-- What Is Section -->
-        <section class="what-is-section">
+        <section id="what-is" class="what-is-section">
             <div class="content-wrapper">
                 <h2>WHAT IS YOURWALL?</h2>
                 <p>YourWall is an advanced interior and exterior wall system with independent performance data for:</p>
@@ -83,7 +85,7 @@
         </section>
         
         <!-- Factory Made Section -->
-        <section class="factory-made-section">
+        <section id="factory-made" class="factory-made-section">
             <div class="content-wrapper">
                 <h2>FACTORY MADE</h2>
                 <p>Our panels are manufactured in a controlled factory environment ensuring consistent quality and precision. This approach provides numerous benefits:</p>
@@ -101,7 +103,7 @@
         </section>
         
         <!-- Applications Section -->
-        <section class="applications-section">
+        <section id="applications" class="applications-section">
             <div class="section-header">
                 <h2>APPLICATIONS</h2>
                 <p>Our advanced wall systems are suitable for a wide range of construction scenarios</p>
@@ -135,7 +137,7 @@
         </section>
         
         <!-- Benefits Section -->
-        <section class="benefits-section">
+        <section id="benefits" class="benefits-section">
             <div class="section-header">
                 <h2>BENEFITS</h2>
                 <p>Discover the advantages of our advanced walling systems</p>
@@ -160,7 +162,7 @@
         </section>
         
         <!-- Footer -->
-        <footer>
+        <footer id="contact">
             <div class="footer-content">
                 <div class="footer-info">
                     <h3>YourWall Systems</h3>
@@ -174,9 +176,6 @@
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="products.html">Products</a></li>
-                        <li><a href="applications.html">Applications</a></li>
-                        <li><a href="benefits.html">Benefits</a></li>
-                        <li><a href="specifications.html">Specifications</a></li>
                         <li><a href="about.html">About Us</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
@@ -185,7 +184,7 @@
                     <h4>Stay Updated</h4>
                     <p>Subscribe to our newsletter for the latest updates</p>
                     <form class="newsletter-form">
-                        <input type="email" placeholder="Your Email Address">
+                        <input type="email" placeholder="Your Email Address" aria-label="Email Address">
                         <button type="submit">Subscribe</button>
                     </form>
                 </div>
@@ -209,11 +208,8 @@
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="products.html">Products</a></li>
-                <li><a href="applications.html">Applications</a></li>
-                <li><a href="benefits.html">Benefits</a></li>
-                <li><a href="specifications.html">Technical</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="resources.html">Resources</a></li>
+                <!-- <li><a href="#applications">Applications</a></li> -->
+                <!-- <li><a href="#benefits">Benefits</a></li> -->
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
@@ -223,7 +219,7 @@
         </div>
     </div>
     
-    <!-- Chat widget (similar to the one in the image) -->
+    <!-- Chat widget -->
     <div class="chat-widget">
         <div class="chat-bubble">
             <img src="images/yourwall-logo-small.png" alt="YourWall Chat">
@@ -232,8 +228,33 @@
         <div class="chat-panel">
             <div class="chat-header">
                 Welcome to YourWall
+                <button class="close-chat-panel">&times;</button>
+            </div>
+            <div class="chat-body">
+                <p>How can we help you today?</p>
+                <div class="quick-actions">
+                    <button>Product Info</button>
+                    <button>Contact Sales</button>
+                    <button>Technical Support</button>
+                </div>
             </div>
         </div>
+    </div>
+    
+    <!-- Mobile Navigation Quick Buttons -->
+    <div class="mobile-nav-buttons">
+        <a href="tel:+1234567890" class="mobile-nav-button">
+            <i class="fas fa-phone"></i>
+            <span>Call</span>
+        </a>
+        <a href="mailto:info@yourwallsystems.com" class="mobile-nav-button">
+            <i class="fas fa-envelope"></i>
+            <span>Email</span>
+        </a>
+        <a href="#" class="mobile-nav-button scroll-top">
+            <i class="fas fa-chevron-up"></i>
+            <span>Top</span>
+        </a>
     </div>
     
     <script src="js/main-revised.js"></script>

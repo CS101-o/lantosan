@@ -169,17 +169,43 @@ document.addEventListener('DOMContentLoaded', function() {
                     document.body.style.overflow = '';
                 }
                 
-                // Scroll to the target
-                targetElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+                // Smooth scroll with offset for fixed elements
+                const offset = 60;
+                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - offset;
                 
-                // Update URL without page reload
-                history.pushState(null, null, targetId);
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
             }
         });
     });
+
+    // Add scroll to top functionality
+    const scrollTopButton = document.querySelector('.scroll-top');
+    if (scrollTopButton) {
+        scrollTopButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+    
+    // Show/hide mobile nav buttons based on scroll position
+    const mobileNavButtons = document.querySelector('.mobile-nav-buttons');
+    if (mobileNavButtons) {
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                mobileNavButtons.classList.add('visible');
+            } else {
+                mobileNavButtons.classList.remove('visible');
+            }
+        });
+    }
+
+
     
     // Scroll animations
     const animateElements = () => {
@@ -200,6 +226,17 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     };
+
+     // Better handling for chat panel on mobile
+     const closeChatPanel = document.querySelector('.close-chat-panel');
+     if (closeChatPanel) {
+         closeChatPanel.addEventListener('click', function() {
+             const chatPanel = document.querySelector('.chat-panel');
+             if (chatPanel) {
+                 chatPanel.classList.remove('active');
+             }
+         });
+     }
     
     // Set initial styles for animated elements
     const setupAnimatedElements = () => {
@@ -210,6 +247,7 @@ document.addEventListener('DOMContentLoaded', function() {
             card.style.transition = `opacity 0.5s ease ${index * 0.1}s, transform 0.5s ease ${index * 0.1}s`;
         });
     };
+
     
     setupAnimatedElements();
     animateElements(); // Run once on page load
@@ -227,6 +265,28 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
+    // Handle orientation changes
+    window.addEventListener('orientationchange', function() {
+        // Force redraw of elements that might be positioned incorrectly
+        setTimeout(function() {
+            const elementsToRedraw = document.querySelectorAll('.hero, .logo, .side-menu');
+            elementsToRedraw.forEach(elem => {
+                elem.style.display = 'none';
+                void elem.offsetHeight; // Trigger reflow
+                elem.style.display = '';
+            });
+        }, 100);
+    });
+    
+    // Add mobile-specific classes based on screen size
+    function updateMobileClasses() {
+        const isMobile = window.innerWidth <= 768;
+        document.body.classList.toggle('is-mobile', isMobile);
+    }
+    
+    updateMobileClasses();
+    window.addEventListener('resize', updateMobileClasses);
+
     // Handle newsletter form submission (for demo purposes)
     const newsletterForm = document.querySelector('.newsletter-form');
     if (newsletterForm) {
@@ -255,5 +315,41 @@ document.addEventListener('DOMContentLoaded', function() {
             // Clear form
             emailInput.value = '';
         });
+    }
+
+    // Set up lazy loading for images (if you have images with class 'lazy-image')
+    const lazyImages = document.querySelectorAll('.lazy-image');
+    if (lazyImages.length > 0) {
+        // Use Intersection Observer if supported
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        const src = img.getAttribute('data-src');
+                        
+                        if (src) {
+                            img.setAttribute('src', src);
+                            img.classList.add('loaded');
+                            imageObserver.unobserve(img);
+                        }
+                    }
+                });
+            });
+            
+            lazyImages.forEach(function(img) {
+                imageObserver.observe(img);
+            });
+        } else {
+            // Fallback for browsers without Intersection Observer
+            // Simply load all images immediately
+            lazyImages.forEach(function(img) {
+                const src = img.getAttribute('data-src');
+                if (src) {
+                    img.setAttribute('src', src);
+                    img.classList.add('loaded');
+                }
+            });
+        }
     }
 });
