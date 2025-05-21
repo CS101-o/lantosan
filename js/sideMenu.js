@@ -205,6 +205,38 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Hide sidebar on scroll down, show on scroll up
+    const sideMenu = document.querySelector('.side-menu');
+    let lastScrollTop = 0;
+    let isScrolling = false;
+
+    window.addEventListener('scroll', function() {
+        if (!isScrolling) {
+            window.requestAnimationFrame(function() {
+                let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+                
+                // If we're at the very top, always show the sidebar
+                if (currentScroll <= 50) {
+                    sideMenu.classList.remove('hidden');
+                } else {
+                    // Scrolling down hides the sidebar
+                    if (currentScroll > lastScrollTop) {
+                        sideMenu.classList.add('hidden');
+                    } 
+                    // Scrolling up shows the sidebar
+                    else {
+                        sideMenu.classList.remove('hidden');
+                    }
+                }
+                
+                lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+                isScrolling = false;
+            });
+            
+            isScrolling = true;
+        }
+    }, { passive: true });
+
 
     
     // Scroll animations

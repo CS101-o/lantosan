@@ -209,6 +209,37 @@ button {
     transform: scale(1.1);
 }
 
+/* Sidebar show/hide transitions */
+.side-menu {
+    transition: transform 0.3s ease;
+    will-change: transform;
+}
+
+.side-menu.hidden {
+    transform: translateX(-100%);
+}
+
+/* Sidebar mini logo styling */
+.sidebar-mini-logo {
+    margin: 5px 0;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sidebar-mini-logo img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Language selector replacement - hide it if not used */
+.language-selector {
+    display: none;
+}
+
 /* ===== Header ===== 
 header {
     padding: var(--space-md) var(--space-xl);

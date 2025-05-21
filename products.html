@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Wall Panel Systems | YourWall</title>
     <link rel="stylesheet" href="css/products.css">
     <script src="js/sideMenu.js"></script>
@@ -12,57 +12,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Top Info Bar -->
-    <div class="top-info-bar">
-        <div class="container top-info-content">
-            <div class="contact-info">
-                <span>+123 456 7890</span> | <a href="mailto:info@yourwallsystems.com">info@yourwallsystems.com</a>
-            </div>
-            <div class="social-links-top">
-                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Header -->
-    <header class="header">
-        <div class="container header-container">
-            <div class="logo-header">
-                <a href="index.html">
-                    <img src="images/wall-logo.jpg" alt="YourWall Logo">
-                </a>
-            </div>
-            
-            <button class="mobile-menu-btn" aria-label="Toggle Navigation">
-                <i class="fas fa-bars"></i>
-            </button>
-            
-            <nav class="nav-desktop">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="products.html" class="active">Products</a></li>
-                    <li><a href="applications.html">Applications</a></li>
-                    <li><a href="benefits.html">Benefits</a></li>
-                    <li><a href="specifications.html">Technical</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
-            
-            <div class="header-right">
-                <div class="language-selector-header">
-                    <i class="fas fa-globe"></i>
-                    <span>English</span>
-                </div>
-                <div class="search-btn">
-                    <i class="fas fa-search"></i>
-                </div>
-            </div>
-        </div>
-    </header>
     <!-- Side Menu -->
     <div class="side-menu">
         <div class="menu-toggle">
@@ -71,31 +20,25 @@
                 <span></span>
                 <span></span>
             </div>
-            <div class="menu-label">MENU</div>
+            <div class="menu-label desktop-only">MENU</div>
         </div>
         
-        <div class="language-selector">
-            <i class="fas fa-globe"></i>
-            <span>English</span>
+        <div class="sidebar-mini-logo">
+            <a href="index.html">
+                <img src="images/wall-logo.jpg" alt="YourWall Mini Logo">
+            </a>
         </div>
         
         <div class="social-links">
             <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
             <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#" aria-label="YouTube" class="desktop-only"><i class="fab fa-youtube"></i></a>
         </div>
     </div>
     
     <!-- Main Content Area -->
     <div class="main-content">
-        <!-- Logo (no header) -->
-        <div class="logo">
-            <a href="main.html">
-                <img src="images/wall-logo.jpg" alt="Wall Logo" class="logo-image">
-            </a>
-        </div>
-        
         <!-- Page Header -->
         <section class="page-header">
             <h1>INSULATED & SOUNDPROOF WALL PANELS</h1>
@@ -421,11 +364,11 @@
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="products.html">Products</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="products.html" class="active">Products</a></li>
                 <li><a href="applications.html">Applications</a></li>
                 <li><a href="benefits.html">Benefits</a></li>
-                <li><a href="specifications.html">Specifications</a></li>
-                <li><a href="about.html">About Us</a></li>
+                <li><a href="specifications.html">Technical</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
@@ -444,10 +387,33 @@
         <div class="chat-panel">
             <div class="chat-header">
                 Welcome to YourWall
+                <button class="close-chat-panel">&times;</button>
+            </div>
+            <div class="chat-body">
+                <p>How can we help you today?</p>
+                <div class="quick-actions">
+                    <button>Product Info</button>
+                    <button>Contact Sales</button>
+                    <button>Technical Support</button>
+                </div>
             </div>
         </div>
     </div>
     
-    <script src="js/main-revised.js"></script>
+    <!-- Mobile Navigation Quick Buttons -->
+    <div class="mobile-nav-buttons">
+        <a href="tel:+1234567890" class="mobile-nav-button">
+            <i class="fas fa-phone"></i>
+            <span>Call</span>
+        </a>
+        <a href="mailto:info@yourwallsystems.com" class="mobile-nav-button">
+            <i class="fas fa-envelope"></i>
+            <span>Email</span>
+        </a>
+        <a href="#" class="mobile-nav-button scroll-top">
+            <i class="fas fa-chevron-up"></i>
+            <span>Top</span>
+        </a>
+    </div>
 </body>
 </html>
