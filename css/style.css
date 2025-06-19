@@ -347,24 +347,89 @@ header {
 }
 
 /* ===== Hero Section ===== */
+
+/* ===== Hero Section (Modified) ===== */
+/* ===== Hero Section (Modified) ===== */
 .hero {
-    height: 100vh ; /* Adjust based on header height */
+    height: 100vh;
+    min-height: 600px; /* Optional: set a minimum height */
     background-color: var(--white);
     overflow: hidden;
+    position: relative; /* For absolute positioning of background */
+    display: flex;
+    flex-direction: column; /* Stack logo, text */
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    padding: var(--space-xxl); /* Add some padding around content */
+    text-align: center; /* Center text content */
 }
 
-.hero-split {
-    display: flex;
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
+    background-image: url('https://picsum.photos/1200/800') !important;  /* Ensure correct path to your image */
+    background-size: cover !important;
+    background-position: center !important;
+    z-index: 0; /* Place behind the content */
+}
+
+.hero-content {
+    width: 100%;
+    max-width: 1200px; /* Optional: limit content width */
+    position: relative; /* Ensure content is above background */
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-content .logo {
+    margin-bottom: var(--space-lg); /* Add space below the logo */
+    position: static; /* Override absolute positioning from base styles */
+    transform: none; /* Remove previous transform */
+    left: auto;
+    top: auto;
+}
+
+.hero-content .logo .logo-image {
+    height: auto; /* Let height adjust based on width */
+    width: 800px; /* Increased logo width */
+    max-width: 90%; /* Ensure it doesn't overflow on smaller screens */
+}
+
+.hero-content .logo .logo-image.large-logo {
+    /* Any specific styles for the larger logo can go here if needed */
 }
 
 .hero-text {
-    flex: 1;
-    padding: var(--space-xxl);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    color: var(--white); /* Ensure text is visible on the background */
+    word-break: break-word; /* Helps with very long words */
+    overflow-wrap: break-word; /* Modern equivalent */
 }
+
+.hero-text h3 {
+    font-size: 3rem; /* Adjust as needed */
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: var(--space-md);
+    text-transform: uppercase;
+}
+
+.hero-text h2 {
+    font-size: 1.8rem; /* Adjust as needed */
+    font-weight: 500;
+    color: var(--light-green);
+    text-transform: uppercase;
+    margin-bottom: var(--space-xl);
+}
+
+.hero-cta.mobile-only {
+    /* Keep mobile-only styles */
+}
+
 
 .hero-image {
     flex: 1;
@@ -396,6 +461,29 @@ header {
     margin-bottom: var(--space-lg);
     text-transform: uppercase;
 }
+
+/* Media query for smaller screens to adjust hero layout */
+@media (max-width: 768px) {
+    .hero {
+        padding: var(--space-xl);
+        text-align: center;
+    }
+
+    .hero-content .logo .logo-image {
+        width: 300px; /* Larger logo on mobile */
+    }
+
+    .hero-text h3 {
+        font-size: 2rem;
+    }
+
+    .hero-text h2 {
+        font-size: 1.2rem;
+    }
+}
+
+
+
 
 /* ===== What Is Section ===== */
 .what-is-section {
