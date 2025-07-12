@@ -1,5 +1,5 @@
-/* 
-   Revised CSS for YourWall Systems website
+/*
+   Revised CSS for YourWall Systems website - Adapted to Tiger Sky Tower style
    Green & White Theme with Side Menu Layout
 */
 
@@ -15,11 +15,14 @@
     --medium-gray: #666666;        /* Medium gray for secondary text */
     --light-gray: #F8F9FA;         /* Light gray for backgrounds */
     --white: #FFFFFF;              /* White */
-    
+    --tiger-dark-overlay: rgba(0, 0, 0, 0.5); /* Dark overlay for hero image */
+    --tiger-light-overlay: rgba(0, 0, 0, 0.2); /* Lighter overlay for hero image */
+
+
     /* Typography */
     --heading-font: 'Montserrat', sans-serif;
     --body-font: 'Open Sans', sans-serif;
-    
+
     /* Spacing */
     --space-xs: 0.25rem;
     --space-sm: 0.5rem;
@@ -27,11 +30,11 @@
     --space-lg: 1.5rem;
     --space-xl: 2rem;
     --space-xxl: 3rem;
-    
+
     /* Side Menu Width */
     --side-menu-width: 60px;
     --side-menu-expanded-width: 250px;
-    
+
     /* Transitions */
     --transition-fast: 0.2s ease;
     --transition-normal: 0.3s ease;
@@ -126,7 +129,7 @@ button {
 .side-menu {
     width: var(--side-menu-width);
     height: 100vh;
-    background-color: var(--menu-green);
+    background-color: transparent; /* Changed to transparent */
     position: fixed;
     left: 0;
     top: 0;
@@ -136,14 +139,14 @@ button {
     justify-content: space-between;
     padding: var(--space-md) 0;
     z-index: 100;
-    color: var(--white);
+    color: var(--white); /* Text color for side menu */
 }
 
 .main-content {
     flex: 1;
-    margin-left: var(--side-menu-width);
+    margin-left: 0; /* No margin-left as side menu is fixed and transparent */
     overflow-x: hidden;
-    width: calc(100% - var(--side-menu-width));
+    width: 100%; /* Full width */
     position: relative;
 }
 
@@ -154,6 +157,7 @@ button {
     align-items: center;
     cursor: pointer;
     margin-bottom: var(--space-xl);
+    padding: var(--space-sm); /* Added padding for better click area */
 }
 
 .hamburger {
@@ -184,6 +188,7 @@ button {
     align-items: center;
     font-size: 0.8rem;
     cursor: pointer;
+    display: none; /* Hide as it's now in main nav for desktop */
 }
 
 .language-selector i {
@@ -219,56 +224,89 @@ button {
     transform: translateX(-100%);
 }
 
-/* Sidebar mini logo styling */
+/* Sidebar mini logo styling - not used in this adaptation */
 .sidebar-mini-logo {
-    margin: 5px 0;
-    padding: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.sidebar-mini-logo img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-/* Language selector replacement - hide it if not used */
-.language-selector {
     display: none;
 }
 
-/* ===== Header ===== 
-header {
-    padding: var(--space-md) var(--space-xl);
+
+/* ===== Header & Top Navigation ===== */
+.main-header {
+    position: absolute; /* Position over the hero section */
+    top: 0;
+    left: 0;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--white);
-    position: relative;
-    overflow: visible;
-    min-height: 80px;
-    
+    padding: var(--space-md) var(--space-xxl); /* Adjust padding */
+    z-index: 50; /* Ensure it's above the hero content */
+    color: var(--white);
 }
-*/
+
 .logo {
     display: block;
-    position: absolute;
-    top: var(--space-xl);
-    left: 50%;
-    transform: translateX(-250%); 
+    position: relative; /* Changed from absolute */
+    top: auto;
+    left: auto;
+    transform: none; /* Reset transform */
     z-index: 10;
+    margin-left: calc(var(--side-menu-width) + 10px); /* Adjust based on side menu width */
 }
 
 .logo-image {
-    height: 250px;
+    height: 35px; /* Smaller logo as in the example */
     width: auto;
     max-width: 100%;
 }
 
-/* ===== Navigation Menu (Hidden by default) ===== */
+.top-nav ul {
+    display: flex;
+    gap: var(--space-xl);
+}
+
+.top-nav ul li a {
+    color: var(--white);
+    font-family: var(--body-font);
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.top-nav ul li a:hover {
+    color: var(--light-green);
+}
+
+.top-nav ul li a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--white);
+    transition: width 0.3s ease;
+}
+
+.top-nav ul li a:hover::after,
+.top-nav ul li a.active::after {
+    width: 100%;
+}
+
+.top-nav ul li .lang-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.top-nav ul li .lang-link i {
+    font-size: 1rem;
+}
+
+
+/* ===== Navigation Menu (Hidden by default - this is the mobile/off-canvas menu) ===== */
 .nav-menu {
     position: fixed;
     top: 0;
@@ -346,56 +384,88 @@ header {
     gap: var(--space-sm);
 }
 
-/* ===== Hero Section ===== */
+/* ===== Hero Section (Main landing section) ===== */
 .hero {
-    height: 100vh ; /* Adjust based on header height */
-    background-color: var(--white);
-    overflow: hidden;
-}
-
-.hero-split {
+    height: 100vh;
+    width: 100%;
+    background-image: url('../images/tiger-sky-tower-bg.jpg'); /* Placeholder image */
+    background-size: cover;
+    background-position: center;
+    position: relative;
     display: flex;
-    height: 100%;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: var(--white);
+    text-align: center;
 }
 
-.hero-text {
-    flex: 1;
-    padding: var(--space-xxl);
+/* Add a dark overlay to the hero image for text readability */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--tiger-dark-overlay) 0%, transparent 50%, var(--tiger-dark-overlay) 100%);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2; /* Ensure content is above the overlay */
+    padding-left: var(--side-menu-width); /* Push content right to avoid side menu */
+    width: 100%;
+    text-align: center;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
 }
 
-.hero-image {
-    flex: 1;
-    background-color: var(--menu-green);
-    overflow: hidden;
+.hero-titles {
+    margin-bottom: var(--space-xl);
 }
 
-.hero-text h1 {
-    font-size: 4.5rem;
+.hero-main-title {
+    font-size: 6rem; /* Larger font size */
     font-weight: 800;
-    line-height: 1.1;
+    line-height: 1; /* Tighter line height */
     color: var(--white);
-    margin-bottom: var(--space-lg);
     text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Subtle text shadow */
+    margin-bottom: var(--space-md);
 }
 
-.hero-text h2 {
-    font-size: 1.5rem;
+.hero-subtitle {
+    font-size: 1.8rem; /* Smaller subtitle */
     font-weight: 500;
-    color: var(--light-green);
+    color: var(--white);
     text-transform: uppercase;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
 }
 
-.hero-text h3 {
-    font-size: 4.5rem;
-    font-weight: 800;
-    line-height: 1.1;
-    color: var(--dark-gray);
-    margin-bottom: var(--space-lg);
+.view-project-button {
+    display: inline-block;
+    padding: 15px 40px;
+    background-color: transparent; /* Transparent background */
+    color: var(--white);
+    border: 2px solid var(--white); /* White border */
+    border-radius: 50px; /* Rounded corners */
+    font-family: var(--heading-font);
+    font-weight: 600;
     text-transform: uppercase;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
 }
+
+.view-project-button:hover {
+    background-color: var(--white); /* White background on hover */
+    color: var(--dark-gray); /* Dark gray text on hover */
+}
+
 
 /* ===== What Is Section ===== */
 .what-is-section {
@@ -651,7 +721,7 @@ footer {
 .chat-bubble {
     width: 60px;
     height: 60px;
-    background-color: var(--white);
+    background-color: var(--primary-green); /* Changed to primary green */
     border-radius: 50%;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     display: flex;
@@ -662,9 +732,17 @@ footer {
 }
 
 .chat-bubble img {
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
+    /* Hide the YourWall small logo if you want a simple chat icon */
+    display: none;
+}
+
+/* Add a chat icon inside the bubble */
+.chat-bubble::before {
+    font-family: "Font Awesome 5 Free"; /* Ensure Font Awesome is loaded */
+    content: "\f075"; /* Chat icon */
+    font-weight: 900;
+    color: var(--white);
+    font-size: 1.8rem;
 }
 
 .close-chat {
@@ -673,7 +751,7 @@ footer {
     right: -8px;
     width: 20px;
     height: 20px;
-    background-color: var(--primary-green);
+    background-color: var(--dark-gray); /* Darker close button */
     color: var(--white);
     border-radius: 50%;
     display: flex;
@@ -681,6 +759,8 @@ footer {
     justify-content: center;
     font-size: 0.8rem;
     cursor: pointer;
+    line-height: 1; /* Adjust for better centering of X */
+    padding-top: 1px; /* Fine-tune centering */
 }
 
 .chat-panel {
@@ -710,121 +790,272 @@ footer {
 
 /* ===== Responsive Styles ===== */
 @media (max-width: 1200px) {
-    .hero-text h1 {
-        font-size: 3.5rem;
+    .hero-main-title {
+        font-size: 5rem;
+    }
+    .hero-subtitle {
+        font-size: 1.5rem;
+    }
+    .main-header {
+        padding: var(--space-md) var(--space-xl);
+    }
+    .top-nav ul {
+        gap: var(--space-lg);
     }
 }
 
 @media (max-width: 992px) {
-    .hero-split {
-        flex-direction: column;
+    .main-header {
+        flex-direction: column; /* Stack logo and nav for smaller desktops */
+        align-items: flex-start;
+        padding-top: var(--space-xl);
     }
-    
-    .hero-text, .hero-image {
-        flex: auto;
+    .logo {
+        margin-left: 0; /* Reset margin for stacking */
+        margin-bottom: var(--space-md);
     }
-    
-    .hero-text {
-        padding: var(--space-xl) var(--space-lg);
+    .top-nav {
+        width: 100%;
     }
-    
-    .hero-image {
-        height: 40%;
+    .top-nav ul {
+        justify-content: space-around; /* Distribute items */
+        width: 100%;
     }
-    
-    .what-is-section, 
+
+    .hero-main-title {
+        font-size: 4rem;
+    }
+    .hero-subtitle {
+        font-size: 1.3rem;
+    }
+
+    .what-is-section,
     .factory-made-section {
         flex-direction: column;
     }
-    
-    .diagram-wrapper, 
+
+    .diagram-wrapper,
     .image-wrapper {
         margin-top: var(--space-lg);
+    }
+
+    .desktop-only {
+        display: none !important; /* Force hide desktop elements */
+    }
+    .mobile-only {
+        display: block !important; /* Force show mobile elements */
     }
 }
 
 @media (max-width: 768px) {
     :root {
         --space-xxl: 2rem;
+        --space-xl: 1.5rem;
+        --space-lg: 1rem;
+        --space-md: 0.75rem;
     }
-    
-    .hero-text h1 {
-        font-size: 2.5rem;
+
+    body {
+        font-size: 15px;
     }
-    
-    .hero-text h2 {
-        font-size: 1.2rem;
+
+    /* Optimize side menu for mobile */
+    .side-menu {
+        width: 50px; /* Keep side menu compact */
+        background-color: transparent; /* Keep transparent */
     }
-    
+
+    .main-content {
+        margin-left: 0; /* No margin-left, hero covers full width */
+        width: 100%;
+    }
+
+    /* Hide desktop-only elements more strictly */
+    .desktop-only {
+        display: none !important;
+    }
+
+    /* Show mobile-only elements */
+    .mobile-only {
+        display: block !important;
+    }
+
+    /* Header for mobile (main-header on top of hero) */
+    .main-header {
+        flex-direction: row; /* Keep logo and hamburger aligned */
+        justify-content: space-between;
+        align-items: center;
+        padding: var(--space-md);
+    }
+
+    .logo {
+        margin-left: 0; /* No extra margin on mobile */
+        text-align: left;
+    }
+
+    .logo-image {
+        height: 30px; /* Smaller logo on mobile */
+    }
+
+    /* Hero section optimizations */
+    .hero {
+        height: 100vh;
+        min-height: 600px; /* Ensure a minimum height */
+    }
+
+    .hero::before {
+        /* Adjust overlay for mobile, maybe make it stronger */
+        background: linear-gradient(to bottom, var(--tiger-dark-overlay) 0%, transparent 70%, var(--tiger-dark-overlay) 100%);
+    }
+
+    .hero-content {
+        padding-left: 0; /* Center content horizontally */
+        padding: var(--space-xxl) var(--space-md); /* Add vertical padding */
+    }
+
+    .hero-main-title {
+        font-size: 3.5rem; /* Further reduce font size */
+        line-height: 1.1;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .view-project-button {
+        padding: 12px 30px;
+        font-size: 1rem;
+    }
+
+
+    /* Content sections optimizations */
+    .what-is-section,
+    .factory-made-section,
+    .applications-section,
+    .benefits-section {
+        padding: var(--space-xl) var(--space-md);
+    }
+
     .what-is-section h2,
     .factory-made-section h2,
     .section-header h2 {
-        font-size: 2rem;
+        font-size: 1.8rem;
+        text-align: center;
     }
-    
-    .benefits-grid {
-        grid-template-columns: 1fr;
+
+    .content-wrapper,
+    .diagram-wrapper {
+        padding: 0 var(--space-sm);
     }
-    
+
+    /* Benefits section for mobile */
+    .benefit-card {
+        padding: var(--space-lg);
+    }
+
+    /* Footer optimizations */
+    footer {
+        padding: var(--space-xl) var(--space-md) var(--space-md);
+    }
+
     .footer-content {
-        grid-template-columns: 1fr;
+        gap: var(--space-lg);
     }
-    
-    .newsletter-form {
-        flex-direction: column;
+
+    /* Navigation menu optimizations (off-canvas) */
+    .nav-menu {
+        width: 85vw;
     }
-    
-    .newsletter-form button {
-        width: 100%;
-        margin-top: var(--space-xs);
+
+    .nav-menu nav ul li {
+        margin-bottom: var(--space-sm);
+    }
+
+    .nav-menu nav ul li a {
+        font-size: 1.1rem;
+        padding: var(--space-xs) 0;
+    }
+
+    /* Adjust the position of the side menu hamburger to be absolute on the page, not inside .main-content */
+    .side-menu {
+        position: fixed; /* Keep it fixed */
+        left: 0;
+        top: 0;
+        height: 100vh;
+        background-color: transparent; /* Remains transparent */
+        z-index: 250; /* Higher z-index to be on top of everything */
+        padding-top: var(--space-md); /* Adjust padding */
+    }
+    .menu-toggle {
+        background-color: rgba(0,0,0,0.3); /* Add subtle background for visibility */
+        border-radius: 0 4px 4px 0;
+        padding: 10px 15px 10px 10px;
+        position: absolute;
+        top: 15px; /* Aligns with the logo roughly */
+        left: 0;
+    }
+    .menu-toggle .menu-label {
+        display: none; /* Hide 'MENU' text on mobile */
+    }
+    .hamburger span {
+        background-color: var(--white); /* Ensure hamburger is white against dark hero */
+    }
+
+    .social-links {
+        display: none; /* Hide social links on the side menu for mobile, they can be in the off-canvas */
     }
 }
 
-@media (max-width: 576px) {
-    .side-menu {
-        width: 50px;
+/* Further optimize for extra small screens */
+@media (max-width: 480px) {
+    .hero-main-title {
+        font-size: 2.8rem;
     }
-    
-    .main-content {
-        margin-left: 50px;
-        width: calc(100% - 50px);
+
+    .hero-subtitle {
+        font-size: 1rem;
     }
-    
-    .menu-label {
-        display: none;
-    }
-    
-    .hero-text h1 {
-        font-size: 2rem;
-    }
-    
-    .applications-grid {
+
+    .applications-grid,
+    .benefits-grid {
         grid-template-columns: 1fr;
     }
-    
-    .application-card {
-        max-width: 300px;
-        margin: 0 auto;
+
+    .application-card,
+    .benefit-card {
+        max-width: 100%;
     }
-    
+
+    /* Make the menu toggle more thumb-friendly */
+    .menu-toggle {
+        padding: var(--space-xs);
+    }
+
+    .hamburger {
+        width: 22px;
+        height: 16px;
+    }
+
+    /* Make the chat widget smaller and more accessible */
     .chat-widget {
         bottom: 10px;
         right: 10px;
     }
-    
+
     .chat-bubble {
         width: 50px;
         height: 50px;
     }
-    
-    .chat-bubble img {
-        width: 30px;
-        height: 30px;
+
+    .chat-bubble::before {
+        font-size: 1.5rem;
     }
-    
+
     .chat-panel {
-        width: 280px;
+        width: 90vw;
         height: 350px;
+        bottom: 60px;
+        right: 0;
     }
 }
 
@@ -1017,306 +1248,17 @@ footer {
     overflow: hidden;
 }
 
-
-
-/* -----------------------------------------------Adjust Base Mobile Styles */
-@media (max-width: 768px) {
-    :root {
-        --space-xxl: 2rem;
-        --space-xl: 1.5rem;
-        --space-lg: 1rem;
-        --space-md: 0.75rem;
-    }
-    
-    body {
-        font-size: 15px;
-    }
-    
-    /* Optimize side menu for mobile */
-    .side-menu {
-        width: 45px;
-    }
-    
-    .main-content {
-        margin-left: 45px;
-        width: calc(100% - 45px);
-    }
-    
-    .logo {
-        position: absolute;
-        top: 15px;
-        left: 50%;
-        transform: translateX(-50%); /* Center the logo */
-        z-index: 10;
-        width: auto;
-        max-width: 120px; /* Limit width on mobile */
-    }
-    
-    .logo-image {
-        height: auto;
-        width: 100%;
-        max-height: 60px; /* Control height */
-    }
-    
-    /* Hero section optimizations */
-    .hero {
-        height: auto;
-        min-height: 100vh;
-    }
-    
-    .hero-split {
-        flex-direction: column;
-    }
-    
-    .hero-text {
-        padding: calc(var(--space-xxl) + 100px) var(--space-lg) var(--space-lg);
-        text-align: center;
-    }
-    
-    .hero-text h3 {
-        font-size: 2.8rem;
-    }
-    
-    .hero-text h2 {
-        font-size: 1.3rem;
-    }
-    
-    .hero-image {
-        height: 35vh;
-    }
-    
-    /* Content sections optimizations */
-    .what-is-section,
-    .factory-made-section,
-    .applications-section,
-    .benefits-section {
-        padding: var(--space-xl) var(--space-md);
-    }
-    
-    .what-is-section h2,
-    .factory-made-section h2,
-    .section-header h2 {
-        font-size: 1.8rem;
-        text-align: center;
-    }
-    
-    .content-wrapper, 
-    .diagram-wrapper {
-        padding: 0 var(--space-sm);
-    }
-    
-    /* Benefits section for mobile */
-    .benefit-card {
-        padding: var(--space-lg);
-    }
-    
-    /* Footer optimizations */
-    footer {
-        padding: var(--space-xl) var(--space-md) var(--space-md);
-    }
-    
-    .footer-content {
-        gap: var(--space-lg);
-    }
-    
-    /* Navigation menu optimizations */
-    .nav-menu {
-        width: 85vw;
-    }
-    
-    .nav-menu nav ul li {
-        margin-bottom: var(--space-sm);
-    }
-    
-    .nav-menu nav ul li a {
-        font-size: 1.1rem;
-        padding: var(--space-xs) 0;
-    }
-}
-
-/* Further optimize for extra small screens */
-@media (max-width: 480px) {
-    .hero-text h3 {
-        font-size: 2.2rem;
-    }
-    
-    .hero-text h2 {
-        font-size: 1.1rem;
-    }
-    
-    .logo-image {
-        height: 150px;
-    }
-    
-    .applications-grid,
-    .benefits-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .application-card,
-    .benefit-card {
-        max-width: 100%;
-    }
-    
-    /* Make the menu toggle more thumb-friendly */
-    .menu-toggle {
-        padding: var(--space-xs);
-    }
-    
-    .hamburger {
-        width: 22px;
-        height: 16px;
-    }
-    
-    /* Make the chat widget smaller and more accessible */
-    .chat-widget {
-        bottom: 15px;
-        right: 15px;
-    }
-    
-    .chat-bubble {
-        width: 45px;
-        height: 45px;
-    }
-    
-    .chat-panel {
-        width: 90vw;
-        height: 350px;
-        bottom: 60px;
-        right: 0;
-    }
-}
-
-/* Touch-friendly improvements */
-@media (max-width: 768px) {
-    /* Increase touch target sizes */
-    .nav-menu nav ul li a,
-    .footer-links ul li a,
-    .social-links a,
-    .menu-toggle,
-    .chat-bubble {
-        padding: 8px;
-    }
-    
-    /* Add better loading for images on mobile */
-    .image-placeholder {
-        min-height: 150px;
-    }
-    
-    /* Improved menu toggle for mobile */
-    .hamburger span {
-        height: 2px;
-        margin: 1px 0;
-    }
-    
-    /* Better spacing for forms on mobile */
-    .form-group input,
-    .form-group textarea,
-    .newsletter-form input,
-    .newsletter-form button {
-        padding: 12px;
-        font-size: 16px; /* Prevents iOS zoom on focus */
-    }
-    
-    /* Better navigation overlay for mobile */
-    .overlay.active {
-        backdrop-filter: blur(2px);
-    }
-    
-    /* Optimize tap targets in applications and benefits sections */
-    .application-card,
-    .benefit-card {
-        cursor: pointer;
-    }
-    
-    /* Fix for iOS sticky hover states */
-    .application-card:hover,
-    .benefit-card:hover {
-        transform: none;
-    }
-    
-    /* Add active states for touch instead */
-    .application-card:active,
-    .benefit-card:active {
-        transform: scale(0.98);
-    }
-}
-
-/* Fix for iPhone notch/dynamic island */
-@media screen and (max-width: 896px) {
-    .hero-text {
-        padding-top: max(calc(var(--space-xxl) + 100px), env(safe-area-inset-top) + 120px);
-        padding-left: max(var(--space-lg), env(safe-area-inset-left) + var(--space-sm));
-        padding-right: max(var(--space-lg), env(safe-area-inset-right) + var(--space-sm));
-    }
-    
-    .side-menu {
-        padding-top: max(var(--space-md), env(safe-area-inset-top));
-        padding-bottom: max(var(--space-md), env(safe-area-inset-bottom));
-    }
-}
-
-/* Add smooth scrolling behavior on all devices */
-html {
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-}
-
-
 /* Mobile-only and Desktop-only utility classes */
 .mobile-only {
     display: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) { /* Changed breakpoint to 992px for desktop/mobile transition */
     .mobile-only {
         display: block;
     }
-    
     .desktop-only {
         display: none;
-    }
-}
-
-/* Hero mobile optimization */
-@media (max-width: 768px) {
-    .hero-cta {
-        margin-top: var(--space-lg);
-    }
-    
-    .hero-button {
-        display: inline-block;
-        padding: 10px 24px;
-        background-color: var(--primary-green);
-        color: var(--white);
-        border-radius: 4px;
-        font-family: var(--heading-font);
-        font-weight: 600;
-        text-transform: uppercase;
-        transition: background-color 0.3s ease;
-    }
-    
-    .hero-button:hover, 
-    .hero-button:active {
-        background-color: var(--secondary-green);
-        color: var(--white);
-    }
-    
-    /* Add gradient overlay to ensure text remains readable */
-    .hero-text {
-        position: relative;
-        z-index: 1;
-    }
-    
-    .hero-text::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(to bottom, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 100%);
-        z-index: -1;
     }
 }
 
@@ -1339,12 +1281,12 @@ html {
         transform: translateY(100%);
         transition: transform 0.3s ease, opacity 0.3s ease;
     }
-    
+
     .mobile-nav-buttons.visible {
         opacity: 1;
         transform: translateY(0);
     }
-    
+
     .mobile-nav-button {
         flex: 1;
         display: flex;
@@ -1355,16 +1297,16 @@ html {
         text-decoration: none;
         font-size: 0.8rem;
     }
-    
+
     .mobile-nav-button i {
         font-size: 1.2rem;
         margin-bottom: 4px;
     }
-    
+
     .mobile-nav-button:active {
         background-color: var(--very-light-green);
     }
-    
+
     /* Adjust footer padding to account for mobile nav buttons */
     footer {
         padding-bottom: calc(var(--space-lg) + 60px);
@@ -1378,32 +1320,32 @@ html {
         max-width: 320px;
         right: 10px;
     }
-    
+
     .chat-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 12px;
     }
-    
+
     .close-chat-panel {
         color: var(--white);
         font-size: 1.2rem;
         background: none;
         border: none;
     }
-    
+
     .chat-body {
         padding: 15px;
     }
-    
+
     .quick-actions {
         display: flex;
         flex-direction: column;
         gap: 10px;
         margin-top: 15px;
     }
-    
+
     .quick-actions button {
         background-color: var(--very-light-green);
         color: var(--primary-green);
@@ -1414,7 +1356,7 @@ html {
         font-weight: 500;
         text-align: left;
     }
-    
+
     .quick-actions button:active {
         background-color: var(--light-green);
     }
@@ -1425,22 +1367,22 @@ html {
     a:active, button:active, .menu-toggle:active, .application-card:active, .benefit-card:active {
         opacity: 0.7;
     }
-    
+
     /* Increase tap target size */
     .nav-menu nav ul li a {
         padding: 12px 0;
     }
-    
+
     .footer-links ul li a {
         padding: 8px 0;
         display: block;
     }
-    
+
     /* Improved form elements for touch */
     input, textarea, button {
         font-size: 16px; /* Prevents iOS zoom */
     }
-    
+
     /* Adjust chat widget position to avoid interference with mobile nav */
     .chat-widget {
         bottom: 70px;
@@ -1454,7 +1396,7 @@ html {
             padding-bottom: max(10px, env(safe-area-inset-bottom));
             height: max(60px, calc(50px + env(safe-area-inset-bottom)));
         }
-        
+
         .chat-widget {
             bottom: max(70px, calc(70px + env(safe-area-inset-bottom)));
         }
@@ -1466,13 +1408,13 @@ html {
     .image-placeholder {
         background-color: var(--very-light-green);
     }
-    
+
     /* Add loading state for images */
     .lazy-image {
         opacity: 0;
         transition: opacity 0.3s ease;
     }
-    
+
     .lazy-image.loaded {
         opacity: 1;
     }
@@ -1484,14 +1426,187 @@ html {
         flex-direction: column;
         gap: 10px;
     }
-    
+
     .newsletter-form input {
         width: 100%;
         padding: 12px;
     }
-    
+
     .newsletter-form button {
         width: 100%;
         padding: 12px;
+    }
+}
+
+
+/*
+* CSS for the Full-Screen Hero Slider
+* Complements the existing style.css
+*/
+
+/* ===== Top Navigation Bar ===== */
+.top-nav {
+    position: fixed;
+    top: 0;
+    left: var(--side-menu-width); /* Adjust for the side menu */
+    width: calc(100% - var(--side-menu-width));
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-md) var(--space-xl);
+    z-index: 100;
+    background-color: transparent; /* Makes it blend with the slider */
+    transition: background-color 0.3s ease;
+}
+
+.top-nav nav ul {
+    display: flex;
+    list-style: none;
+}
+
+.top-nav nav ul li {
+    margin: 0 var(--space-md);
+}
+
+.top-nav nav ul li a {
+    color: var(--white);
+    text-decoration: none;
+    font-family: var(--heading-font);
+    font-weight: 500;
+}
+
+.top-nav .header-right .language-selector {
+    color: var(--white);
+    cursor: pointer;
+}
+
+
+/* ===== Hero Slider Section ===== */
+.hero-slider {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1.2s ease, visibility 1.2s ease;
+}
+
+.slide.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Dark overlay for better text readability */
+.slide::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.slide-content {
+    position: relative;
+    z-index: 2;
+    color: var(--white);
+}
+
+.product-title {
+    font-family: var(--heading-font);
+    font-size: 4rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: var(--space-xl);
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.view-project-btn {
+    display: inline-block;
+    padding: var(--space-sm) var(--space-xl);
+    border: 2px solid var(--white);
+    border-radius: 50px;
+    color: var(--white);
+    background-color: transparent;
+    text-decoration: none;
+    font-family: var(--heading-font);
+    font-weight: 600;
+    transition: var(--transition-normal);
+}
+
+.view-project-btn:hover {
+    background-color: var(--white);
+    color: var(--dark-gray);
+}
+
+/* Slider Navigation Arrows */
+.slide-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: transparent;
+    color: var(--white);
+    border: none;
+    font-size: 2.5rem;
+    cursor: pointer;
+    z-index: 3;
+    padding: var(--space-md);
+    transition: color 0.3s ease;
+}
+
+.slide-arrow:hover {
+    color: var(--secondary-green);
+}
+
+.prev {
+    left: var(--space-lg);
+}
+
+.next {
+    right: var(--space-lg);
+}
+
+
+/* ===== Responsive Adjustments for Slider ===== */
+@media (max-width: 768px) {
+    .top-nav {
+        left: var(--side-menu-width);
+        width: calc(100% - var(--side-menu-width));
+        justify-content: center; /* Center the logo on mobile */
+    }
+
+    .top-nav .logo {
+        position: static;
+        transform: none;
+    }
+
+    .product-title {
+        font-size: 2.5rem;
+    }
+
+    .view-project-btn {
+        padding: var(--space-sm) var(--space-lg);
+    }
+
+    .slide-arrow {
+        font-size: 2rem;
     }
 }

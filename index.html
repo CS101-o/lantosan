@@ -3,14 +3,805 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Advanced Walling Systems | YourWall</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/mobile-optimization.css">
-    <script src="js/sideMenu.js"></script>
+    <title>Advanced Wall Systems | Lentosan</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="js/sideMenu.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Variables */
+        :root {
+            --primary-green: #2D6A4F;
+            --secondary-green: #52B788;
+            --light-green: #B7E4C7;
+            --very-light-green: #D8F3DC;
+            --dark-gray: #333333;
+            --medium-gray: #666666;
+            --light-gray: #F8F9FA;
+            --white: #FFFFFF;
+            --heading-font: 'Montserrat', sans-serif;
+            --body-font: 'Open Sans', sans-serif;
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-xxl: 3rem;
+            --side-menu-width: 60px;
+            --transition-normal: 0.3s ease;
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--body-font);
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            background-color: var(--white);
+            overflow-x: hidden;
+            display: flex;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--heading-font);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            line-height: 1.2;
+        }
+
+        p {
+            margin-bottom: var(--space-md);
+        }
+
+        a {
+            color: var(--primary-green);
+            text-decoration: none;
+            transition: 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--secondary-green);
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-family: var(--body-font);
+        }
+
+        /* Side Menu */
+        .side-menu {
+            width: var(--side-menu-width);
+            height: 100vh;
+            background-color: transparent;
+            position: fixed;
+            left: 0;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-md) 0;
+            z-index: 100;
+            color: var(--white);
+        }
+
+        .main-content {
+            flex: 1;
+            margin-left: 0;
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+        }
+
+        .menu-toggle {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            margin-bottom: var(--space-xl);
+            padding: var(--space-sm);
+            background-color: rgba(0,0,0,0.3);
+            border-radius: 0 4px 4px 0;
+        }
+
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 24px;
+            height: 18px;
+            margin-bottom: var(--space-xs);
+        }
+
+        .hamburger span {
+            width: 100%;
+            height: 2px;
+            background-color: var(--white);
+            transition: 0.2s ease;
+        }
+
+        .menu-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-lg);
+        }
+
+        .social-links a {
+            color: var(--white);
+            font-size: 1.2rem;
+            transition: 0.2s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--light-green);
+            transform: scale(1.1);
+        }
+
+        /* Header */
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: var(--side-menu-width);
+            width: calc(100% - var(--side-menu-width));
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-md) var(--space-xl);
+            z-index: 100;
+            background-color: transparent;
+            transition: background-color 0.3s ease;
+        }
+
+        .logo {
+            display: block;
+        }
+
+        .logo-text {
+            font-family: var(--heading-font);
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .top-nav nav ul {
+            display: flex;
+            gap: var(--space-xl);
+        }
+
+        .top-nav nav ul li a {
+            color: var(--white);
+            font-family: var(--body-font);
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .top-nav nav ul li a:hover {
+            color: var(--light-green);
+        }
+
+        .top-nav nav ul li a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--white);
+            transition: width 0.3s ease;
+        }
+
+        .top-nav nav ul li a:hover::after,
+        .top-nav nav ul li a.active::after {
+            width: 100%;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .language-selector {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+            color: var(--white);
+            cursor: pointer;
+        }
+
+        /* Slider Styles */
+        .hero-slider {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3));
+        }
+
+        .slide-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: var(--secondary-green);
+            padding: 0 var(--space-xl);
+            max-width: 1200px;
+        }
+
+        .slide-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: var(--space-md);
+        }
+
+        .slide-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .slide-arrow:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .slide-arrow.prev {
+            left: var(--space-xl);
+        }
+
+        .slide-arrow.next {
+            right: var(--space-xl);
+        }
+
+        .slide-arrow i {
+            color: var(--white);
+            font-size: 1.5rem;
+        }
+
+        .slide-indicators {
+            position: absolute;
+            bottom: var(--space-xl);
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: var(--space-sm);
+            z-index: 10;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background-color: var(--white);
+            transform: scale(1.2);
+        }
+
+        .view-project-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+            border-radius: 50px;
+            font-family: var(--heading-font);
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            margin-top: var(--space-md);
+        }
+
+        .view-project-btn:hover {
+            background-color: var(--white);
+            color: var(--dark-gray);
+        }
+
+        /* Our Story Section */
+        .our-story-section {
+            padding: var(--space-xxl);
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--white);
+            text-align: center;
+        }
+
+        .our-story-section h2 {
+            font-size: 3rem;
+            color: var(--white);
+            margin-bottom: var(--space-xl);
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .story-content {
+            max-width: 1000px;
+            margin: 0 auto var(--space-xxl);
+            font-size: 1.2rem;
+            line-height: 1.8;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-xl);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: var(--space-xl);
+        }
+
+        .stat-icon {
+            font-size: 3rem;
+            color: var(--light-green);
+            margin-bottom: var(--space-md);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: var(--space-sm);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--light-green);
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* Projects Section */
+        .projects-section {
+            padding: var(--space-xxl);
+            background-color: var(--light-gray);
+        }
+
+        .projects-section h2 {
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            margin-bottom: var(--space-xl);
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--space-xl);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .project-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.6));
+        }
+
+        .project-content {
+            padding: var(--space-xl);
+            text-align: center;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            color: var(--primary-green);
+            margin-bottom: var(--space-sm);
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .project-location {
+            color: var(--medium-gray);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        /* News Section */
+        .news-section {
+            padding: var(--space-xxl);
+            background-color: var(--white);
+        }
+
+        .news-section h2 {
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            margin-bottom: var(--space-xl);
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-xl);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .news-card {
+            background-color: var(--very-light-green);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .news-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .news-content {
+            padding: var(--space-lg);
+        }
+
+        .news-date {
+            color: var(--secondary-green);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+            text-transform: uppercase;
+        }
+
+        .news-title {
+            font-size: 1.2rem;
+            color: var(--primary-green);
+            margin-bottom: var(--space-sm);
+            font-weight: 700;
+        }
+
+        .news-excerpt {
+            color: var(--medium-gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        /* Navigation Menu */
+        .nav-menu {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 300px;
+        height: 100vh;
+        background-color: var(--primary-green);
+        z-index: 1000;
+        transition: left 0.3s ease;
+        padding: var(--space-xl);
+        }
+
+        .nav-menu.active {
+        left: 0;
+        }
+
+        .nav-menu-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: var(--space-xl);
+        }
+
+        .close-menu {
+        color: var(--white);
+        font-size: 2rem;
+        background: none;
+        border: none;
+        }
+
+        .nav-menu nav ul {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-md);
+        }
+
+        .nav-menu nav ul li a {
+        color: var(--white);
+        font-size: 1.2rem;
+        display: block;
+        padding: var(--space-sm) 0;
+        }
+
+        /* Chat Widget */
+        .chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+
+        .chat-bubble {
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary-green);
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .chat-bubble::before {
+            font-family: "Font Awesome 5 Free";
+            content: "\f075";
+            font-weight: 900;
+            color: var(--white);
+            font-size: 1.8rem;
+        }
+
+        .chat-panel {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 300px;
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: none;
+            padding: var(--space-lg);
+        }
+
+        .chat-panel.active {
+            display: block;
+        }
+
+        .chat-panel p {
+            margin: 0;
+            color: var(--dark-gray);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-gray);
+            color: var(--white);
+            padding: var(--space-xxl) var(--space-xl) var(--space-lg);
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-xl);
+            margin-bottom: var(--space-xl);
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-section h3 {
+            color: var(--light-green);
+            margin-bottom: var(--space-md);
+            text-transform: uppercase;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: var(--light-gray);
+            margin-bottom: var(--space-sm);
+        }
+
+        .footer-section a:hover {
+            color: var(--light-green);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: var(--space-md);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--light-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 992px) {
+            .desktop-only {
+                display: none !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .side-menu {
+                width: 50px;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .top-nav {
+                left: 0;
+                width: 100%;
+                justify-content: space-between;
+                padding: var(--space-md);
+            }
+
+            .slide-content {
+                padding: 0 var(--space-md);
+            }
+
+            .slide-title {
+                font-size: 2.5rem;
+            }
+
+            .slide-arrow {
+                width: 40px;
+                height: 40px;
+            }
+
+            .slide-arrow.prev {
+                left: var(--space-md);
+            }
+
+            .slide-arrow.next {
+                right: var(--space-md);
+            }
+
+            .our-story-section,
+            .projects-section,
+            .news-section {
+                padding: var(--space-xl) var(--space-md);
+            }
+
+            .our-story-section h2,
+            .projects-section h2,
+            .news-section h2 {
+                font-size: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--space-lg);
+            }
+
+            .projects-grid,
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-toggle .menu-label {
+                display: none;
+            }
+
+            .social-links {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .slide-title {
+                font-size: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Side Menu -->
@@ -23,245 +814,313 @@
             </div>
             <div class="menu-label desktop-only">MENU</div>
         </div>
-        
-        <div class="language-selector">
-            <i class="fas fa-globe"></i>
-            <span class="desktop-only">English</span>
-        </div>
-        
-        <div class="social-links">
+        <div class="social-links desktop-only">
             <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
             <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#" aria-label="YouTube" class="desktop-only"><i class="fab fa-youtube"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
         </div>
     </div>
     
-    <!-- Main Content Area -->
+
+    <!-- Main Content -->
     <div class="main-content">
-        <!-- Header with Logo -->
-        <div class="logo">
-            <a href="index.html">
-                <img src="images/wall-logo.jpg" alt="YourWall Logo" class="logo-image">
-            </a>
+        <!-- Header -->
+        <header class="top-nav">
+            <div class="logo">
+                <div class="logo-text">LENTOSAN</div>
+            </div>
+            <nav class="desktop-only">
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#">Projects</a></li>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Event & News</a></li>
+                    <li><a href="/contact.html">Contact us</a></li>
+                </ul>
+            </nav>
+            <div class="header-right desktop-only">
+                <div class="language-selector">
+                    <i class="fas fa-globe"></i>
+                    <span>English</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Slider -->
+        <section class="hero-slider">
+            <div class="slide active" style="background-image:url('/images/Home\ toppest\ picture.jpeg');">
+                <div class="slide-content">
+                    <h2 class="slide-title">Advanced Wall Systems</h2>
+                    <p class="hero-subtitle">Transforming the UK Construction Industry</p>
+                    <a href="#our-story" class="view-project-btn">Learn More</a>
+                </div>
+            </div>
+            
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
+                <div class="slide-content">
+                    <h2 class="slide-title">Premium Quality Materials</h2>
+                    <p class="hero-subtitle">Durability meets innovation</p>
+                    <a href="#projects" class="view-project-btn">View Projects</a>
+                </div>
+            </div>
+            
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
+                <div class="slide-content">
+                    <h2 class="slide-title">Sustainable Solutions</h2>
+                    <p class="hero-subtitle">Eco-friendly construction for the future</p>
+                    <a href="#news" class="view-project-btn">Latest News</a>
+                </div>
+            </div>
+            
+            <button class="slide-arrow prev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="slide-arrow next">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            
+            <div class="slide-indicators">
+                <div class="indicator active"></div>
+                <div class="indicator"></div>
+                <div class="indicator"></div>
+            </div>
+        </section>
+
+        <!-- Our Story Section -->
+        <section id="our-story" class="our-story-section">
+            <h2>Our Story</h2>
+            <div class="story-content">
+                <p>Rooted in a legacy dating back to 1969, Lentosan stands on the solid foundation of decades-long experience in the construction sector. While our official establishment as Lentosan Construction Technologies Inc. dates to 2018, our journey began much earlier under the name Yıldırım Construction Energy Informatics Industry and Trade Ltd., actively trading construction materials since 2007.</p>
+                
+                <p>Driven by a deep commitment to innovation, reliability, and quality, we have grown to become a trusted name in providing advanced wall panel systems and construction solutions. Today, our products and services reach across Turkey/Anatolia, the Middle East, Europe, Gulf Region, and North Africa, contributing to a wide range of projects from residential buildings to industrial and infrastructure developments.</p>
+                
+                <p>With every panel we produce, we build not only structures but also long-term partnerships grounded in trust, performance, and shared vision.</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-calendar-alt"></i></div>
+                    <div class="stat-number">55</div>
+                    <div class="stat-label">Years Of Experience</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-building"></i></div>
+                    <div class="stat-number">162</div>
+                    <div class="stat-label">Completed Projects</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-users"></i></div>
+                    <div class="stat-number">47</div>
+                    <div class="stat-label">Employees</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-industry"></i></div>
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Companies</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects-section">
+            <h2>Explore Our Top Features Project Of Turkey</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');"></div>
+                    <div class="project-content">
+                        <h3 class="project-title">Polat Hotel</h3>
+                        <p class="project-location">Erzurum</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');"></div>
+                    <div class="project-content">
+                        <h3 class="project-title">Catalca Trade Center</h3>
+                        <p class="project-location">Istanbul</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');"></div>
+                    <div class="project-content">
+                        <h3 class="project-title">Government Villa Project</h3>
+                        <p class="project-location">Kayseri</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- News Section -->
+        <section id="news" class="news-section">
+            <h2>News</h2>
+            <div class="news-grid">
+                <div class="news-card">
+                    <div class="news-image" style="background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="news-content">
+                        <div class="news-date">June 15, 2024</div>
+                        <h3 class="news-title">Revolutionary Wall Panel Technology Launched</h3>
+                        <p class="news-excerpt">Lentosan introduces cutting-edge wall panel solutions that promise to transform construction efficiency and sustainability standards across the industry.</p>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-image" style="background-image: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="news-content">
+                        <div class="news-date">June 10, 2024</div>
+                        <h3 class="news-title">Major Construction Project Completed in Istanbul</h3>
+                        <p class="news-excerpt">Successfully delivered another landmark project using our advanced wall systems, showcasing durability and innovative design capabilities.</p>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-image" style="background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="news-content">
+                        <div class="news-date">June 5, 2024</div>
+                        <h3 class="news-title">Expansion into European Markets</h3>
+                        <p class="news-excerpt">Lentosan announces strategic expansion plans to bring innovative wall panel solutions to European construction markets.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+
+        <!-- Chat Widget -->
+        <div class="chat-widget">
+            <div class="chat-bubble"></div>
         </div>
-        
-        <!-- Full Screen Hero Section -->
-        <section id="hero" class="hero">
-            <div class="hero-split">
-                <div class="hero-text">
-                    <h3>ADVANCED<br>WALL SYSTEMS</h3>
-                    <h2>TRANSFORMING THE CONSTRUCTION INDUSTRY</h2>
-                    <div class="hero-cta mobile-only">
-                        <a href="#what-is" class="hero-button">Learn More</a>
-                    </div>
-                </div>
-                <div class="hero-image">
-                    <!-- Replace with actual image -->
-                    <div class="image-placeholder">Wall System Close-up Image</div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- What Is Section -->
-        <section id="what-is" class="what-is-section">
-            <div class="content-wrapper">
-                <h2>WHAT IS YOURWALL?</h2>
-                <p>YourWall is an advanced interior and exterior wall system with independent performance data for:</p>
-                <ul>
-                    <li>Thermal insulation</li>
-                    <li>Airborne sound insulation</li>
-                    <li>Reaction to fire</li>
-                    <li>Fire resistance</li>
-                    <li>Robustness</li>
-                </ul>
-                <p>Test data confirming the product performance undertaken at accredited test facilities is available.</p>
-                <p>Although YourWall is water permeable it can be installed where water ingress is still present because it's not impacted by the water and it dries out.</p>
-                <p>YourWall is a modular off site manufactured walling system that is fast to install, and ready to decorate without the need of a plaster finish.</p>
-            </div>
-            <div class="diagram-wrapper">
-                <div class="image-placeholder">Product Diagram</div>
-            </div>
-        </section>
-        
-        <!-- Factory Made Section -->
-        <section id="factory-made" class="factory-made-section">
-            <div class="content-wrapper">
-                <h2>FACTORY MADE</h2>
-                <p>Our panels are manufactured in a controlled factory environment ensuring consistent quality and precision. This approach provides numerous benefits:</p>
-                <ul>
-                    <li>Reduced waste compared to on-site construction</li>
-                    <li>Higher quality control standards</li>
-                    <li>Faster installation times</li>
-                    <li>Weather-independent manufacturing</li>
-                    <li>Customizable to project requirements</li>
-                </ul>
-            </div>
-            <div class="image-wrapper">
-                <div class="image-placeholder">Factory Production Image</div>
-            </div>
-        </section>
-        
-        <!-- Applications Section -->
-        <section id="applications" class="applications-section">
-            <div class="section-header">
-                <h2>APPLICATIONS</h2>
-                <p>Our advanced wall systems are suitable for a wide range of construction scenarios</p>
-            </div>
-            <div class="applications-grid">
-                <div class="application-card">
-                    <div class="application-image">
-                        <div class="image-placeholder">Blockwork Alternative</div>
-                    </div>
-                    <h3>Blockwork Replacement</h3>
-                </div>
-                <div class="application-card">
-                    <div class="application-image">
-                        <div class="image-placeholder">SFS Replacement</div>
-                    </div>
-                    <h3>SFS Alternative</h3>
-                </div>
-                <div class="application-card">
-                    <div class="application-image">
-                        <div class="image-placeholder">Shaft Wall</div>
-                    </div>
-                    <h3>Shaft Walls</h3>
-                </div>
-                <div class="application-card">
-                    <div class="application-image">
-                        <div class="image-placeholder">Lift Shaft</div>
-                    </div>
-                    <h3>Lift Shafts</h3>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Benefits Section -->
-        <section id="benefits" class="benefits-section">
-            <div class="section-header">
-                <h2>BENEFITS</h2>
-                <p>Discover the advantages of our advanced walling systems</p>
-            </div>
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-icon"><i class="fas fa-bolt"></i></div>
-                    <h3>TIME SAVING</h3>
-                    <p>55% reduction in labor hours compared to traditional methods</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon"><i class="fas fa-coins"></i></div>
-                    <h3>COST EFFICIENT</h3>
-                    <p>Lower overall costs through reduced waste and faster installation</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon"><i class="fas fa-tint-slash"></i></div>
-                    <h3>WATER RESISTANT</h3>
-                    <p>Not affected by water or mold growth, can be installed before watertight</p>
-                </div>
-            </div>
-        </section>
-        
+
         <!-- Footer -->
-        <footer id="contact">
+        <footer>
             <div class="footer-content">
-                <div class="footer-info">
-                    <h3>YourWall Systems</h3>
-                    <p>Advanced modular walling solutions for modern construction</p>
-                    <p><i class="fas fa-map-marker-alt"></i> 123 Construction Way, Building District, City</p>
-                    <p><i class="fas fa-phone"></i> +123 456 7890</p>
-                    <p><i class="fas fa-envelope"></i> info@yourwallsystems.com</p>
+                <div class="footer-section">
+                    <h3>About Us</h3>
+                    <p>Lentosan Construction Technologies Inc. provides advanced wall panel systems and construction solutions globally.</p>
                 </div>
-                <div class="footer-links">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html" class="active">Home</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="products.html">Products</a></li>
-                        <li><a href="#applications">Applications</a></li> 
-                        <li><a href="#benefits">Benefits</a></li> 
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="specifications.html">Technical</a>
-                    </ul>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#">Home</a>
+                    <a href="#">Projects</a>
+                    <a href="#">About Us</a>
+                    <a href="#">News</a>
+                    <a href="#">Contact</a>
                 </div>
-                <div class="footer-signup">
-                    <h4>Stay Updated</h4>
-                    <p>Subscribe to our newsletter for the latest updates</p>
-                    <form class="newsletter-form">
-                        <input type="email" placeholder="Your Email Address" aria-label="Email Address">
-                        <button type="submit">Subscribe</button>
-                    </form>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Construction Ave, London, UK</p>
+                    <p><i class="fas fa-phone"></i> +44 123 456 7890</p>
+                    <p><i class="fas fa-envelope"></i> info@lentosan.com</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 YourWall Systems. All Rights Reserved.</p>
+                <p>&copy; 2023 Lentosan Construction Technologies. All Rights Reserved.</p>
             </div>
-        </footer> 
+        </footer>
     </div>
-    
-    <!-- Navigation Menu (Hidden by default) -->
+
+    <!-- Navigation Menu -->
     <div class="nav-menu">
         <div class="nav-menu-header">
             <div class="logo">
-                <img src="images/yourwall-logo-white.png" alt="YourWall Logo">
+                <div class="logo-text">LENTOSAN</div>
             </div>
             <button class="close-menu">&times;</button>
         </div>
         <nav>
             <ul>
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="products.html">Products</a></li>
-                <li><a href="#applications">Applications</a></li> 
-                <li><a href="#benefits">Benefits</a></li> 
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="specifications.html">Technical</a>
-                
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">Projects</a></li>
+                <li><a href="#">About us</a></li>
+                <li><a href="#">Event & News</a></li>
+                <li><a href="/contact.html">Contact us</a></li>
             </ul>
         </nav>
-        <div class="nav-contact-info">
-            <p><i class="fas fa-phone"></i> +123 456 7890</p>
-            <p><i class="fas fa-envelope"></i> info@yourwallsystems.com</p>
-        </div>
     </div>
+
     
-    <!-- Chat widget -->
-    <div class="chat-widget">
-        <div class="chat-bubble">
-            <img src="images/yourwall-logo-small.png" alt="YourWall Chat">
-            <span class="close-chat">&times;</span>
-        </div>
-        <div class="chat-panel">
-            <div class="chat-header">
-                Welcome to YourWall
-                <button class="close-chat-panel">&times;</button>
-            </div>
-            <div class="chat-body">
-                <p>How can we help you today?</p>
-                <div class="quick-actions">
-                    <button>Product Info</button>
-                    <button>Contact Sales</button>
-                    <button>Technical Support</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Mobile Navigation Quick Buttons -->
-    <div class="mobile-nav-buttons">
-        <a href="tel:+1234567890" class="mobile-nav-button">
-            <i class="fas fa-phone"></i>
-            <span>Call</span>
-        </a>
-        <a href="mailto:info@yourwallsystems.com" class="mobile-nav-button">
-            <i class="fas fa-envelope"></i>
-            <span>Email</span>
-        </a>
-        <a href="#" class="mobile-nav-button scroll-top">
-            <i class="fas fa-chevron-up"></i>
-            <span>Top</span>
-        </a>
-    </div>
-    
-    <script src="js/main-revised.js"></script>
+
+    <script>
+        // Slider functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize slider variables
+            let currentSlide = 0;
+            const slides = document.querySelectorAll('.slide');
+            const indicators = document.querySelectorAll('.indicator');
+            const prevBtn = document.querySelector('.prev');
+            const nextBtn = document.querySelector('.next');
+            const totalSlides = slides.length;
+            let slideInterval;
+            
+            // Function to show a specific slide
+            function showSlide(index) {
+                // Reset all slides and indicators
+                slides.forEach(slide => slide.classList.remove('active'));
+                indicators.forEach(indicator => indicator.classList.remove('active'));
+                
+                // Set the current slide and indicator to active
+                slides[index].classList.add('active');
+                indicators[index].classList.add('active');
+                currentSlide = index;
+            }
+            
+            // Function to move to the next slide
+            function nextSlide() {
+                let nextIndex = currentSlide + 1;
+                if (nextIndex >= totalSlides) {
+                    nextIndex = 0;
+                }
+                showSlide(nextIndex);
+            }
+            
+            // Function to move to the previous slide
+            function prevSlide() {
+                let prevIndex = currentSlide - 1;
+                if (prevIndex < 0) {
+                    prevIndex = totalSlides - 1;
+                }
+                showSlide(prevIndex);
+            }
+            
+            // Start auto-sliding
+            function startSlider() {
+                slideInterval = setInterval(nextSlide, 5000);
+            }
+            
+            // Stop auto-sliding
+            function stopSlider() {
+                clearInterval(slideInterval);
+            }
+            
+            // Add event listeners
+            prevBtn.addEventListener('click', () => {
+                stopSlider();
+                prevSlide();
+                startSlider();
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                stopSlider();
+                nextSlide();
+                startSlider();
+            });
+            
+            // Add indicators click events
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    stopSlider();
+                    showSlide(index);
+                    startSlider();
+                });
+            });
+            
+            // Initialize slider
+            showSlide(currentSlide);
+            startSlider();
+            
+            // Pause on hover
+            const slider = document.querySelector('.hero-slider');
+            slider.addEventListener('mouseenter', stopSlider);
+            slider.addEventListener('mouseleave', startSlider);
+        });
+    </script>
+
+
 </body>
 </html>
