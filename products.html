@@ -3,32 +3,313 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Wall Panel Systems | YourWall</title>
-    <link rel="stylesheet" href="css/products.css">
+    <title>Wall Panel Systems | YourWall Systems</title>
+    <link rel="stylesheet" href="css/style.css">
     <script src="js/sideMenu.js"></script>
-    <style>
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 150;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-        
-        .overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-    </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Additional styles specific to products page that complement the main style.css */
+        .product-hero {
+            display: flex;
+            align-items: center;
+            padding: var(--space-xxl);
+            gap: var(--space-xxl);
+            background-color: var(--white);
+        }
+
+        .product-hero-text {
+            flex: 1;
+        }
+
+        .product-hero-text h2 {
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            margin-bottom: var(--space-lg);
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+
+        .product-hero-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--medium-gray);
+        }
+
+        .product-hero-image {
+            flex: 1;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .specs-table-container {
+            overflow-x: auto;
+            margin: var(--space-xl) 0;
+        }
+
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 auto;
+            background-color: var(--white);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .specs-table th,
+        .specs-table td {
+            padding: var(--space-md) var(--space-lg);
+            text-align: left;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .specs-table th {
+            background-color: var(--primary-green);
+            color: var(--white);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .specs-table tr:nth-child(even) {
+            background-color: var(--light-gray);
+        }
+
+        .specs-table tr:hover {
+            background-color: var(--very-light-green);
+        }
+
+        .installation-steps {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: var(--space-xl);
+            padding: var(--space-xl);
+            background-color: var(--light-gray);
+            border-radius: 4px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .step-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .step-number {
+            min-width: 60px;
+            height: 60px;
+            background-color: var(--primary-green);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-right: var(--space-lg);
+        }
+
+        .step-content h3 {
+            font-size: 1.2rem;
+            color: var(--primary-green);
+            margin-bottom: var(--space-sm);
+        }
+
+        .step-content p {
+            color: var(--medium-gray);
+            line-height: 1.7;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: var(--space-xl);
+        }
+
+        .feature-item {
+            background-color: var(--white);
+            border-radius: 4px;
+            padding: var(--space-xl);
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-lg);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            min-width: 60px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .feature-content h3 {
+            font-size: 1.2rem;
+            color: var(--primary-green);
+            margin-bottom: var(--space-sm);
+            text-transform: uppercase;
+        }
+
+        .feature-content p {
+            color: var(--medium-gray);
+            line-height: 1.7;
+        }
+
+        .detail-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: var(--space-xl);
+        }
+
+        .detail-card {
+            background-color: var(--white);
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .detail-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .detail-image {
+            height: 220px;
+            overflow: hidden;
+            background-color: var(--very-light-green);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .detail-card h3 {
+            padding: var(--space-lg) var(--space-lg) var(--space-sm);
+            font-size: 1.1rem;
+            color: var(--primary-green);
+            text-align: center;
+        }
+
+        .detail-card p {
+            padding: 0 var(--space-lg) var(--space-lg);
+            color: var(--medium-gray);
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: var(--space-xxl);
+            background-color: var(--primary-green);
+            color: var(--white);
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: var(--space-lg);
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            color: var(--white);
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: var(--space-xl);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--white);
+            color: var(--primary-green);
+            padding: var(--space-md) var(--space-xl);
+            border-radius: 4px;
+            font-family: var(--heading-font);
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: var(--transition-normal);
+            text-transform: uppercase;
+        }
+
+        .cta-button:hover {
+            background-color: var(--light-green);
+            color: var(--primary-green);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .product-hero {
+                flex-direction: column;
+                gap: var(--space-xl);
+            }
+            
+            .product-hero-text,
+            .product-hero-image {
+                width: 100%;
+            }
+            
+            .features-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .product-hero,
+            .what-is-section,
+            .factory-made-section,
+            .applications-section,
+            .benefits-section {
+                padding: var(--space-xl) var(--space-md);
+            }
+            
+            .step-item {
+                padding: var(--space-lg);
+                flex-direction: column;
+            }
+            
+            .step-number {
+                margin-bottom: var(--space-md);
+                margin-right: 0;
+            }
+            
+            .feature-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .feature-icon {
+                margin-bottom: var(--space-md);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .detail-cards-grid,
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Side Menu -->
@@ -42,8 +323,6 @@
             <div class="menu-label desktop-only">MENU</div>
         </div>
         
-
-        
         <div class="social-links">
             <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
@@ -56,121 +335,53 @@
     <div class="main-content">
         <!-- Page Header -->
         <section class="page-header">
-            <div class="header-content">
-                <h1>INSULATED & SOUNDPROOF WALL PANELS</h1>
-                <p>Advanced thermal and acoustic wall panel systems for modern construction</p>
-                <div class="header-features">
-                    <div class="feature-tag">
-                        <i class="fas fa-temperature-low"></i>
-                        <span>Thermal Insulation</span>
-                    </div>
-                    <div class="feature-tag">
-                        <i class="fas fa-volume-mute"></i>
-                        <span>Sound Proof</span>
-                    </div>
-                    <div class="feature-tag">
-                        <i class="fas fa-tools"></i>
-                        <span>Easy Installation</span>
-                    </div>
-                </div>
-            </div>
+            <h1>WALL PANEL SYSTEMS</h1>
+            <p>Advanced modular wall solutions for modern construction</p>
         </section>
         
         <!-- Product Hero Section -->
         <section class="product-hero">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h2>EXPLORE OUR WALL PANEL SYSTEM</h2>
-                    <p>Our factory-manufactured modular wall panels deliver superior insulation, sound dampening, and easy installation in one complete system.</p>
-                    <div class="hero-stats">
-                        <div class="stat-item">
-                            <span class="stat-number">55%</span>
-                            <span class="stat-label">Time Saved</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">45dB</span>
-                            <span class="stat-label">Sound Reduction</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">25%</span>
-                            <span class="stat-label">Cost Reduction</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="hero-visual">
-                    <div class="hero-image-container">
-                        <img src="images/full-panel.jpg" alt="Insulated Wall Panel" class="hero-main-image">
-                        <div class="logo-overlay">
-                            <img src="images/wall-logo.jpg" alt="Lentosan Logo" class="hero-logo">
-                        </div>
-                    </div>
-                </div>
+            <div class="product-hero-text">
+                <h2>INNOVATIVE WALL PANEL TECHNOLOGY</h2>
+                <p>Our factory-manufactured modular wall panels deliver superior insulation, sound dampening, and easy installation in one complete system. Designed for efficiency, sustainability, and performance in commercial, residential, and industrial applications.</p>
+            </div>
+            <div class="product-hero-image">
+                <div class="image-placeholder">Wall Panel System Overview</div>
             </div>
         </section>
         
-        <!-- Panel Details Gallery -->
-        <section class="panel-details-section">
-            <div class="section-header">
-                <h2>PANEL SYSTEM DETAILS</h2>
-                <p>Discover the technical excellence behind our wall panel system</p>
+        <!-- What Makes Our Panels Different -->
+        <section class="what-is-section">
+            <div class="content-wrapper">
+                <h2>WHAT MAKES OUR PANELS DIFFERENT</h2>
+                <p>YourWall Systems represents a revolutionary approach to modern construction, combining advanced materials science with precision manufacturing to deliver superior building performance.</p>
+                <p>Our panels are not just walls – they are complete building systems that integrate structure, insulation, acoustics, and services into a single, factory-manufactured component.</p>
+                <ul>
+                    <li>Factory-controlled quality ensures consistent performance</li>
+                    <li>Integrated service channels eliminate on-site modifications</li>
+                    <li>Superior thermal and acoustic performance exceeds building codes</li>
+                    <li>Rapid installation reduces project timelines by up to 60%</li>
+                    <li>Sustainable manufacturing with minimal waste generation</li>
+                </ul>
             </div>
-            
-            <div class="panel-details-grid">
-                <div class="detail-card">
-                    <div class="detail-image">
-                        <img src="images/full-panel.jpg" alt="Full Panel View">
-                    </div>
-                    <h3>Insulated & Soundproof Panel</h3>
-                    <p>Complete panel with thermal and acoustic insulation core</p>
-                </div>
-                
-                <div class="detail-card">
-                    <div class="detail-image">
-                        <img src="images/l-mount-detail.jpg" alt="L Mounting Profile Detail">
-                    </div>
-                    <h3>L Mounting Profile Detail</h3>
-                    <p>Secure connection system for rapid installation</p>
-                </div>
-                
-                <div class="detail-card">
-                    <div class="detail-image">
-                        <img src="images/corner-joint.jpg" alt="Corner Joint Detail">
-                    </div>
-                    <h3>Corner Joint Detail</h3>
-                    <p>Precision engineered corners for perfect alignment</p>
-                </div>
-                
-                <div class="detail-card">
-                    <div class="detail-image">
-                        <img src="images/cable-channel.jpg" alt="Cable Channel Detail">
-                    </div>
-                    <h3>Cable Channel Detail</h3>
-                    <p>Integrated solution for electrical and data cabling</p>
-                </div>
-                
-                <div class="detail-card">
-                    <div class="detail-image">
-                        <img src="images/external-corner.jpg" alt="External Corner Detail">
-                    </div>
-                    <h3>External Corner Detail</h3>
-                    <p>Clean finishing for exterior facing corners</p>
-                </div>
+            <div class="diagram-wrapper">
+                <div class="image-placeholder">Panel Construction Diagram</div>
             </div>
         </section>
         
         <!-- Panel System Features -->
-        <section class="panel-features">
+        <section class="benefits-section">
             <div class="section-header">
-                <h2>WALL PANEL SYSTEM FEATURES</h2>
-                <p>Advanced technology for superior performance</p>
+                <h2>ADVANCED PANEL FEATURES</h2>
+                <p>Engineered for superior performance in every aspect</p>
             </div>
             
             <div class="features-grid">
                 <div class="feature-item">
                     <div class="feature-icon"><i class="fas fa-temperature-low"></i></div>
                     <div class="feature-content">
-                        <h3>THERMAL INSULATION</h3>
-                        <p>High-performance thermal core provides excellent insulation values, reducing heating and cooling costs while maintaining comfortable indoor temperatures year-round.</p>
+                        <h3>THERMAL EXCELLENCE</h3>
+                        <p>High-performance thermal core provides exceptional insulation values, reducing energy consumption and maintaining comfortable indoor temperatures year-round.</p>
                     </div>
                 </div>
                 
@@ -178,15 +389,15 @@
                     <div class="feature-icon"><i class="fas fa-volume-mute"></i></div>
                     <div class="feature-content">
                         <h3>ACOUSTIC PERFORMANCE</h3>
-                        <p>Superior sound dampening technology reduces noise transmission between spaces, creating quieter, more comfortable environments for work, living, and specialized applications.</p>
+                        <p>Superior sound dampening technology reduces noise transmission between spaces, creating quieter environments for enhanced comfort and productivity.</p>
                     </div>
                 </div>
                 
                 <div class="feature-item">
                     <div class="feature-icon"><i class="fas fa-tools"></i></div>
                     <div class="feature-content">
-                        <h3>EASY INSTALLATION</h3>
-                        <p>Precision-engineered connection systems enable rapid installation with minimal tools, reducing labor costs and project timelines compared to traditional construction methods.</p>
+                        <h3>RAPID INSTALLATION</h3>
+                        <p>Precision-engineered connection systems enable quick installation with minimal tools, reducing labor costs and accelerating project completion.</p>
                     </div>
                 </div>
                 
@@ -194,7 +405,7 @@
                     <div class="feature-icon"><i class="fas fa-bolt"></i></div>
                     <div class="feature-content">
                         <h3>INTEGRATED SERVICES</h3>
-                        <p>Built-in channels and pathways for electrical, data, and other services eliminate the need for chasing and drilling, simplifying installation and maintenance.</p>
+                        <p>Built-in channels and pathways for electrical, data, and other services eliminate the need for chasing and drilling, simplifying installation.</p>
                     </div>
                 </div>
                 
@@ -202,7 +413,7 @@
                     <div class="feature-icon"><i class="fas fa-fire-alt"></i></div>
                     <div class="feature-content">
                         <h3>FIRE RESISTANCE</h3>
-                        <p>Panels are manufactured using fire-resistant materials that meet or exceed building code requirements, enhancing safety in all types of buildings.</p>
+                        <p>Manufactured using fire-resistant materials that meet or exceed building code requirements, enhancing safety in all building types.</p>
                     </div>
                 </div>
                 
@@ -210,287 +421,200 @@
                     <div class="feature-icon"><i class="fas fa-recycle"></i></div>
                     <div class="feature-content">
                         <h3>SUSTAINABILITY</h3>
-                        <p>Manufactured using eco-friendly processes and materials with reduced waste compared to traditional construction, contributing to greener building practices.</p>
+                        <p>Eco-friendly manufacturing processes and materials with reduced waste compared to traditional construction methods.</p>
                     </div>
                 </div>
             </div>
         </section>
         
-        <!-- Technical Specifications Section -->
-        <section class="specifications-section">
-            <div class="section-header">
+        <!-- Technical Specifications -->
+        <section class="factory-made-section">
+            <div class="content-wrapper">
                 <h2>TECHNICAL SPECIFICATIONS</h2>
-                <p>Engineered for excellence in every dimension</p>
+                <p>Our panels are engineered to exacting standards, delivering consistent performance across all applications:</p>
+                
+                <div class="specs-table-container">
+                    <table class="specs-table">
+                        <thead>
+                            <tr>
+                                <th>Specification</th>
+                                <th>Standard Options</th>
+                                <th>Performance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Panel Dimensions</td>
+                                <td>600mm × 2700mm (standard)</td>
+                                <td>Custom sizes available</td>
+                            </tr>
+                            <tr>
+                                <td>Panel Thickness</td>
+                                <td>75mm, 100mm, 125mm</td>
+                                <td>Varies by application</td>
+                            </tr>
+                            <tr>
+                                <td>Sound Reduction</td>
+                                <td>45-55 dB</td>
+                                <td>Exceeds most building requirements</td>
+                            </tr>
+                            <tr>
+                                <td>Thermal Performance</td>
+                                <td>0.022 - 0.035 W/mK</td>
+                                <td>Superior insulation values</td>
+                            </tr>
+                            <tr>
+                                <td>Fire Rating</td>
+                                <td>Class A1/A2 non-combustible</td>
+                                <td>Meets all safety standards</td>
+                            </tr>
+                            <tr>
+                                <td>Installation Time</td>
+                                <td>Up to 60% faster</td>
+                                <td>Compared to traditional methods</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            
-            <div class="specs-table-container">
-                <table class="specs-table">
-                    <thead>
-                        <tr>
-                            <th>Specification</th>
-                            <th>Details</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Panel Dimensions</td>
-                            <td>Standard Size: 600mm width × 2700mm height<br>Custom sizes available upon request</td>
-                        </tr>
-                        <tr>
-                            <td>Panel Thickness</td>
-                            <td>75mm, 100mm (other thicknesses available for specific requirements)</td>
-                        </tr>
-                        <tr>
-                            <td>Core Material</td>
-                            <td>High-density mineral wool insulation / EPS / XPS options</td>
-                        </tr>
-                        <tr>
-                            <td>Facing Material</td>
-                            <td>Gypsum board, Calcium silicate board, Magnesium oxide board</td>
-                        </tr>
-                        <tr>
-                            <td>Sound Reduction</td>
-                            <td>Up to 45-55 dB depending on configuration</td>
-                        </tr>
-                        <tr>
-                            <td>Thermal Conductivity</td>
-                            <td>0.022 - 0.035 W/mK (depending on core material)</td>
-                        </tr>
-                        <tr>
-                            <td>Fire Rating</td>
-                            <td>Class A1/A2 non-combustible (EN 13501-1)</td>
-                        </tr>
-                        <tr>
-                            <td>Weight</td>
-                            <td>25-45 kg/m² (depending on configuration)</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="diagram-wrapper">
+                <div class="image-placeholder">Technical Drawing</div>
             </div>
         </section>
         
-        <!-- Applications Section -->
+        <!-- Panel Components Detail -->
         <section class="applications-section">
             <div class="section-header">
-                <h2>APPLICATIONS</h2>
-                <p>Versatile solutions for diverse building needs</p>
+                <h2>PANEL SYSTEM COMPONENTS</h2>
+                <p>Discover the precision engineering behind our wall systems</p>
             </div>
             
-            <div class="applications-grid">
-                <div class="application-card">
-                    <div class="application-image">
-                        <div class="image-placeholder">Commercial Office</div>
+            <div class="detail-cards-grid">
+                <div class="detail-card">
+                    <div class="detail-image">
+                        <div class="image-placeholder">Complete Panel</div>
                     </div>
-                    <h3>Commercial Offices</h3>
-                    <p>Create quiet, productive workspaces with excellent acoustics</p>
+                    <h3>Complete Wall Panel</h3>
+                    <p>Factory-finished panel with integrated insulation and surface materials</p>
                 </div>
                 
-                <div class="application-card">
-                    <div class="application-image">
-                        <div class="image-placeholder">Residential Buildings</div>
+                <div class="detail-card">
+                    <div class="detail-image">
+                        <div class="image-placeholder">Connection System</div>
                     </div>
-                    <h3>Residential Buildings</h3>
-                    <p>Enhance living comfort with superior sound and thermal insulation</p>
+                    <h3>Connection System</h3>
+                    <p>Precision-engineered interlocking system for rapid, secure assembly</p>
                 </div>
                 
-                <div class="application-card">
-                    <div class="application-image">
-                        <div class="image-placeholder">Healthcare Facilities</div>
+                <div class="detail-card">
+                    <div class="detail-image">
+                        <div class="image-placeholder">Corner Details</div>
                     </div>
-                    <h3>Healthcare Facilities</h3>
-                    <p>Maintain privacy and comfort in sensitive environments</p>
+                    <h3>Corner Solutions</h3>
+                    <p>Custom corner panels and profiles for perfect finishing</p>
                 </div>
                 
-                <div class="application-card">
-                    <div class="application-image">
-                        <div class="image-placeholder">Educational Buildings</div>
+                <div class="detail-card">
+                    <div class="detail-image">
+                        <div class="image-placeholder">Service Channels</div>
                     </div>
-                    <h3>Educational Buildings</h3>
-                    <p>Create focused learning environments free from distraction</p>
+                    <h3>Service Integration</h3>
+                    <p>Built-in channels for electrical, data, and plumbing services</p>
                 </div>
-            </div>
-        </section>
-        
-        <!-- Benefits Section -->
-        <section class="benefits-section">
-            <div class="section-header">
-                <h2>KEY BENEFITS</h2>
-                <p>Comprehensive advantages that set YourWall Systems apart</p>
-            </div>
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-icon"><i class="fas fa-tint-slash"></i></div>
-                    <h3>WATER RESISTANT</h3>
-                    <p>Not affected by water exposure; can be installed before the building is watertight</p>
+                
+                <div class="detail-card">
+                    <div class="detail-image">
+                        <div class="image-placeholder">Track System</div>
+                    </div>
+                    <h3>Track System</h3>
+                    <p>Floor and ceiling tracks for secure panel positioning</p>
                 </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon"><i class="fas fa-temperature-low"></i></div>
-                    <h3>THERMAL PERFORMANCE</h3>
-                    <p>Superior insulation properties that exceed building code requirements</p>
+                
+                <div class="detail-card">
+                    <div class="detail-image">
+                        <div class="image-placeholder">Accessories</div>
+                    </div>
+                    <h3>Finishing Accessories</h3>
+                    <p>Trim pieces, seals, and hardware for professional completion</p>
                 </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon"><i class="fas fa-volume-mute"></i></div>
-                    <h3>ACOUSTIC INSULATION</h3>
-                    <p>Exceptional sound dampening for enhanced privacy and comfort</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon"><i class="fas fa-fire-alt"></i></div>
-                    <h3>FIRE RESISTANCE</h3>
-                    <p>High fire ratings for improved building safety and code compliance</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon"><i class="fas fa-tools"></i></div>
-                    <h3>EASY INSTALLATION</h3>
-                    <p>Simple mounting system requires minimal specialized skills</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon"><i class="fas fa-recycle"></i></div>
-                    <h3>SUSTAINABILITY</h3>
-                    <p>Reduced waste and improved resource efficiency across the lifecycle</p>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Time Saving Section -->
-        <section class="what-is-section">
-            <div class="content-wrapper">
-                <h2>TIME SAVING</h2>
-                <p>YourWall Systems dramatically reduces construction time compared to traditional methods:</p>
-                <ul>
-                    <li>55% reduction in labor hours for wall installation</li>
-                    <li>No need for wet trades, eliminating drying times</li>
-                    <li>Factory-made panels arrive ready to install</li>
-                    <li>Simplified installation process requires minimal specialized skills</li>
-                    <li>Parallel workflow capability for accelerated project timelines</li>
-                </ul>
-                <p>Our time studies show that a typical room can be enclosed with our system in just 1-2 days, compared to 4-7 days using traditional methods. This time efficiency translates directly to cost savings and earlier project completion.</p>
-            </div>
-            <div class="diagram-wrapper">
-                <div class="image-placeholder">Time Comparison Chart</div>
-            </div>
-        </section>
-        
-        <!-- Cost Efficiency Section -->
-        <section class="factory-made-section">
-            <div class="image-wrapper">
-                <div class="image-placeholder">Cost Efficiency Graphic</div>
-            </div>
-            <div class="content-wrapper">
-                <h2>COST EFFICIENCY</h2>
-                <p>YourWall Systems delivers significant cost benefits through multiple channels:</p>
-                <ul>
-                    <li>Reduced labor costs through faster installation times</li>
-                    <li>Minimized material waste compared to traditional construction</li>
-                    <li>No need for specialized plastering or finishing trades</li>
-                    <li>Reduced on-site storage requirements</li>
-                    <li>Lower project management overhead due to simplified process</li>
-                    <li>Long-term savings through superior thermal performance</li>
-                </ul>
-                <p>While the material cost may be comparable to traditional systems, the total installed cost is typically 15-25% lower when all factors are considered.</p>
-            </div>
-        </section>
-        
-        <!-- Environmental Benefits -->
-        <section class="what-is-section">
-            <div class="content-wrapper">
-                <h2>ENVIRONMENTAL BENEFITS</h2>
-                <p>YourWall Systems contributes to more sustainable construction practices:</p>
-                <ul>
-                    <li>Up to 90% reduction in on-site waste compared to traditional methods</li>
-                    <li>Factory-controlled production minimizes material use and optimizes resources</li>
-                    <li>Superior thermal performance reduces building energy consumption</li>
-                    <li>Potential for disassembly and reuse in future renovations</li>
-                    <li>Lower carbon footprint from reduced transportation and site activities</li>
-                    <li>Responsible material sourcing with recycled content options</li>
-                </ul>
-                <p>Our systems can contribute to green building certifications such as LEED, BREEAM, and other environmental performance standards.</p>
-            </div>
-            <div class="diagram-wrapper">
-                <div class="image-placeholder">Environmental Impact Graphic</div>
             </div>
         </section>
         
         <!-- Installation Process -->
-        <section class="installation-section">
-            <div class="section-header">
+        <section class="what-is-section">
+            <div class="content-wrapper">
                 <h2>SIMPLE INSTALLATION PROCESS</h2>
-                <p>Rapid assembly for reduced construction time</p>
+                <p>Our wall panel system is designed for rapid, efficient installation that significantly reduces construction time and labor requirements.</p>
+                
+                <div class="installation-steps">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Track Installation</h3>
+                            <p>Install floor and ceiling tracks to create the framework for the wall system.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Panel Positioning</h3>
+                            <p>Position panels vertically into tracks, ensuring proper alignment and fit.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Panel Connection</h3>
+                            <p>Connect adjacent panels using the integrated connection system.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>Service Installation</h3>
+                            <p>Install electrical and data services using built-in service channels.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h3>Final Finishing</h3>
+                            <p>Apply final decorative finishes directly to the panel surfaces.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            
-            <div class="installation-steps">
-                <div class="step-item">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h3>Floor & Ceiling Track Installation</h3>
-                        <p>Secure the floor and ceiling tracks to create the framework for the wall system.</p>
-                    </div>
-                </div>
-                
-                <div class="step-item">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3>Panel Positioning</h3>
-                        <p>Place panels vertically into the tracks, ensuring each panel is properly aligned.</p>
-                    </div>
-                </div>
-                
-                <div class="step-item">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3>Panel Connection</h3>
-                        <p>Connect adjacent panels using the integrated tongue and groove system.</p>
-                    </div>
-                </div>
-                
-                <div class="step-item">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h3>Service Integration</h3>
-                        <p>Install electrical, data, and other services using the built-in channels.</p>
-                    </div>
-                </div>
-                
-                <div class="step-item">
-                    <div class="step-number">5</div>
-                    <div class="step-content">
-                        <h3>Finishing</h3>
-                        <p>Apply final finishes such as paint or wallpaper directly to the panels.</p>
-                    </div>
-                </div>
+            <div class="diagram-wrapper">
+                <div class="image-placeholder">Installation Process Diagram</div>
             </div>
         </section>
         
         <!-- CTA Section -->
         <section class="cta-section">
-            <h2>READY TO TRANSFORM YOUR BUILDING PROJECT?</h2>
-            <p>Contact our team today to discuss your specific requirements</p>
-            <a href="contact.html" class="cta-button">CONTACT US</a>
+            <h2>READY TO REVOLUTIONIZE YOUR CONSTRUCTION PROJECT?</h2>
+            <p>Contact our technical team to discuss your specific requirements and discover how our wall panel systems can transform your building process</p>
+            <a href="contact.html" class="cta-button">GET TECHNICAL CONSULTATION</a>
         </section>
         
         <!-- Footer -->
-        <footer>
+        <footer id="contact">
             <div class="footer-content">
                 <div class="footer-info">
-                    <h3>Lentosan Construction Technologies</h3>
+                    <h3>YourWall Systems</h3>
                     <p>Advanced modular walling solutions for modern construction</p>
-                    
-                    <h4 style="margin-top: 1.5rem; color: var(--light-green);">1. The Factory - TURKEY</h4>
-                    <p><i class="fas fa-map-marker-alt"></i> Kaleiçi Mahallesi, Gökçeali Caddesi, No: 39/1, 34540<br>Çatalca/İstanbul</p>
-                    <p><i class="fas fa-phone"></i> +90 212 436 4 555</p>
-                    <p><i class="fab fa-whatsapp"></i> +90 537 312 7695</p>
-                    <p><i class="fas fa-envelope"></i> info@lentosan.com.tr</p>
-                    
-                    <h4 style="margin-top: 1.5rem; color: var(--light-green);">2. Manchester Office - UK</h4>
-                    <p><i class="fas fa-map-marker-alt"></i> 16 Tarleton Street, M13 9BS, Manchester</p>
-                    <p><i class="fas fa-phone"></i> +44 7471 407929</p>
-                    <p><i class="fas fa-envelope"></i> info@lentosan.co.uk</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Construction Way, Building District, City</p>
+                    <p><i class="fas fa-phone"></i> +123 456 7890</p>
+                    <p><i class="fas fa-envelope"></i> info@yourwallsystems.com</p>
                 </div>
                 <div class="footer-links">
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="products.html">Products</a></li>
-                        <li><a href="specifications.html">Technical</a></li>
                         <li><a href="about.html">About Us</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
@@ -499,7 +623,7 @@
                     <h4>Stay Updated</h4>
                     <p>Subscribe to our newsletter for the latest updates</p>
                     <form class="newsletter-form">
-                        <input type="email" placeholder="Your Email Address">
+                        <input type="email" placeholder="Your Email Address" aria-label="Email Address">
                         <button type="submit">Subscribe</button>
                     </form>
                 </div>
@@ -510,34 +634,28 @@
         </footer>
     </div>
     
-    <!-- Overlay for sidebar -->
-    <div class="overlay" id="overlay"></div>
-    
     <!-- Navigation Menu (Hidden by default) -->
-    <div class="nav-menu" style="background: linear-gradient(135deg, rgba(150,150,150,1) 0%, rgba(45,106,79,1) 50%, rgba(220,220,220,1) 100%);">
+    <div class="nav-menu">
         <div class="nav-menu-header">
-            <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-                <div style="flex: 1; text-align: center;">
-                </div>
-                <button class="close-menu">&times;</button>
+            <div class="logo">
+                <img src="images/yourwall-logo-white.png" alt="YourWall Logo">
             </div>
+            <button class="close-menu">&times;</button>
         </div>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="products.html" class="active">Products</a></li>
+                <li><a href="applications.html">Applications</a></li>
+                <li><a href="benefits.html">Benefits</a></li>
                 <li><a href="specifications.html">Technical</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
         <div class="nav-contact-info">
-            <p><i class="fas fa-phone"></i> +90 212 436 4 555</p>
-            <p><i class="fab fa-whatsapp"></i> +90 537 312 7695</p>
-            <p><i class="fas fa-envelope"></i> info@lentosan.com.tr</p>
-            <div style="margin-top: 1rem; margin-left: -1rem; text-align: center; width: 60%;">
-                <img src="images/lifeWall.png" alt="Lentosan Logo" style="height: 220px; width: auto; max-width: 400px;">
-            </div>
+            <p><i class="fas fa-phone"></i> +123 456 7890</p>
+            <p><i class="fas fa-envelope"></i> info@yourwallsystems.com</p>
         </div>
     </div>
     
@@ -565,11 +683,11 @@
     
     <!-- Mobile Navigation Quick Buttons -->
     <div class="mobile-nav-buttons">
-        <a href="tel:+902124364555" class="mobile-nav-button">
+        <a href="tel:+1234567890" class="mobile-nav-button">
             <i class="fas fa-phone"></i>
             <span>Call</span>
         </a>
-        <a href="mailto:info@lentosan.com.tr" class="mobile-nav-button">
+        <a href="mailto:info@yourwallsystems.com" class="mobile-nav-button">
             <i class="fas fa-envelope"></i>
             <span>Email</span>
         </a>
@@ -578,33 +696,5 @@
             <span>Top</span>
         </a>
     </div>
-    
-    <script>
-        // Overlay functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const overlay = document.getElementById('overlay');
-            const navMenu = document.querySelector('.nav-menu');
-            const menuToggle = document.querySelector('.menu-toggle');
-            const closeMenu = document.querySelector('.close-menu');
-            
-            // Show overlay and menu when hamburger is clicked
-            menuToggle.addEventListener('click', function() {
-                navMenu.classList.add('active');
-                overlay.classList.add('active');
-            });
-            
-            // Hide overlay and menu when close button is clicked
-            closeMenu.addEventListener('click', function() {
-                navMenu.classList.remove('active');
-                overlay.classList.remove('active');
-            });
-            
-            // Hide overlay and menu when overlay is clicked
-            overlay.addEventListener('click', function() {
-                navMenu.classList.remove('active');
-                overlay.classList.remove('active');
-            });
-        });
-    </script>
 </body>
 </html>
