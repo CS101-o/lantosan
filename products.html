@@ -6,6 +6,25 @@
     <title>Wall Panel Systems | YourWall</title>
     <link rel="stylesheet" href="css/products.css">
     <script src="js/sideMenu.js"></script>
+    <style>
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 150;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,11 +42,7 @@
             <div class="menu-label desktop-only">MENU</div>
         </div>
         
-        <div class="sidebar-mini-logo">
-            <a href="index.html">
-                <img src="images/wall-logo.jpg" alt="YourWall Mini Logo">
-            </a>
-        </div>
+
         
         <div class="social-links">
             <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -41,18 +56,55 @@
     <div class="main-content">
         <!-- Page Header -->
         <section class="page-header">
-            <h1>INSULATED & SOUNDPROOF WALL PANELS</h1>
-            <p>Discover our advanced thermal and acoustic wall panel systems</p>
+            <div class="header-content">
+                <h1>INSULATED & SOUNDPROOF WALL PANELS</h1>
+                <p>Advanced thermal and acoustic wall panel systems for modern construction</p>
+                <div class="header-features">
+                    <div class="feature-tag">
+                        <i class="fas fa-temperature-low"></i>
+                        <span>Thermal Insulation</span>
+                    </div>
+                    <div class="feature-tag">
+                        <i class="fas fa-volume-mute"></i>
+                        <span>Sound Proof</span>
+                    </div>
+                    <div class="feature-tag">
+                        <i class="fas fa-tools"></i>
+                        <span>Easy Installation</span>
+                    </div>
+                </div>
+            </div>
         </section>
         
         <!-- Product Hero Section -->
         <section class="product-hero">
-            <div class="product-hero-text">
-                <h2>EXPLORE OUR WALL PANEL SYSTEM UP CLOSE</h2>
-                <p>Our factory-manufactured modular wall panels deliver superior insulation, sound dampening, and easy installation in one complete system.</p>
-            </div>
-            <div class="product-hero-image">
-                <img src="images/full-panel.jpg" alt="Insulated Wall Panel">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h2>EXPLORE OUR WALL PANEL SYSTEM</h2>
+                    <p>Our factory-manufactured modular wall panels deliver superior insulation, sound dampening, and easy installation in one complete system.</p>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">55%</span>
+                            <span class="stat-label">Time Saved</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">45dB</span>
+                            <span class="stat-label">Sound Reduction</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">25%</span>
+                            <span class="stat-label">Cost Reduction</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-image-container">
+                        <img src="images/full-panel.jpg" alt="Insulated Wall Panel" class="hero-main-image">
+                        <div class="logo-overlay">
+                            <img src="images/wall-logo.jpg" alt="Lentosan Logo" class="hero-logo">
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
         
@@ -259,6 +311,105 @@
             </div>
         </section>
         
+        <!-- Benefits Section -->
+        <section class="benefits-section">
+            <div class="section-header">
+                <h2>KEY BENEFITS</h2>
+                <p>Comprehensive advantages that set YourWall Systems apart</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-tint-slash"></i></div>
+                    <h3>WATER RESISTANT</h3>
+                    <p>Not affected by water exposure; can be installed before the building is watertight</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-temperature-low"></i></div>
+                    <h3>THERMAL PERFORMANCE</h3>
+                    <p>Superior insulation properties that exceed building code requirements</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-volume-mute"></i></div>
+                    <h3>ACOUSTIC INSULATION</h3>
+                    <p>Exceptional sound dampening for enhanced privacy and comfort</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-fire-alt"></i></div>
+                    <h3>FIRE RESISTANCE</h3>
+                    <p>High fire ratings for improved building safety and code compliance</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-tools"></i></div>
+                    <h3>EASY INSTALLATION</h3>
+                    <p>Simple mounting system requires minimal specialized skills</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-recycle"></i></div>
+                    <h3>SUSTAINABILITY</h3>
+                    <p>Reduced waste and improved resource efficiency across the lifecycle</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Time Saving Section -->
+        <section class="what-is-section">
+            <div class="content-wrapper">
+                <h2>TIME SAVING</h2>
+                <p>YourWall Systems dramatically reduces construction time compared to traditional methods:</p>
+                <ul>
+                    <li>55% reduction in labor hours for wall installation</li>
+                    <li>No need for wet trades, eliminating drying times</li>
+                    <li>Factory-made panels arrive ready to install</li>
+                    <li>Simplified installation process requires minimal specialized skills</li>
+                    <li>Parallel workflow capability for accelerated project timelines</li>
+                </ul>
+                <p>Our time studies show that a typical room can be enclosed with our system in just 1-2 days, compared to 4-7 days using traditional methods. This time efficiency translates directly to cost savings and earlier project completion.</p>
+            </div>
+            <div class="diagram-wrapper">
+                <div class="image-placeholder">Time Comparison Chart</div>
+            </div>
+        </section>
+        
+        <!-- Cost Efficiency Section -->
+        <section class="factory-made-section">
+            <div class="image-wrapper">
+                <div class="image-placeholder">Cost Efficiency Graphic</div>
+            </div>
+            <div class="content-wrapper">
+                <h2>COST EFFICIENCY</h2>
+                <p>YourWall Systems delivers significant cost benefits through multiple channels:</p>
+                <ul>
+                    <li>Reduced labor costs through faster installation times</li>
+                    <li>Minimized material waste compared to traditional construction</li>
+                    <li>No need for specialized plastering or finishing trades</li>
+                    <li>Reduced on-site storage requirements</li>
+                    <li>Lower project management overhead due to simplified process</li>
+                    <li>Long-term savings through superior thermal performance</li>
+                </ul>
+                <p>While the material cost may be comparable to traditional systems, the total installed cost is typically 15-25% lower when all factors are considered.</p>
+            </div>
+        </section>
+        
+        <!-- Environmental Benefits -->
+        <section class="what-is-section">
+            <div class="content-wrapper">
+                <h2>ENVIRONMENTAL BENEFITS</h2>
+                <p>YourWall Systems contributes to more sustainable construction practices:</p>
+                <ul>
+                    <li>Up to 90% reduction in on-site waste compared to traditional methods</li>
+                    <li>Factory-controlled production minimizes material use and optimizes resources</li>
+                    <li>Superior thermal performance reduces building energy consumption</li>
+                    <li>Potential for disassembly and reuse in future renovations</li>
+                    <li>Lower carbon footprint from reduced transportation and site activities</li>
+                    <li>Responsible material sourcing with recycled content options</li>
+                </ul>
+                <p>Our systems can contribute to green building certifications such as LEED, BREEAM, and other environmental performance standards.</p>
+            </div>
+            <div class="diagram-wrapper">
+                <div class="image-placeholder">Environmental Impact Graphic</div>
+            </div>
+        </section>
+        
         <!-- Installation Process -->
         <section class="installation-section">
             <div class="section-header">
@@ -320,19 +471,25 @@
         <footer>
             <div class="footer-content">
                 <div class="footer-info">
-                    <h3>YourWall Systems</h3>
+                    <h3>Lentosan Construction Technologies</h3>
                     <p>Advanced modular walling solutions for modern construction</p>
-                    <p><i class="fas fa-map-marker-alt"></i> 123 Construction Way, Building District, City</p>
-                    <p><i class="fas fa-phone"></i> +123 456 7890</p>
-                    <p><i class="fas fa-envelope"></i> info@yourwallsystems.com</p>
+                    
+                    <h4 style="margin-top: 1.5rem; color: var(--light-green);">1. The Factory - TURKEY</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Kaleiçi Mahallesi, Gökçeali Caddesi, No: 39/1, 34540<br>Çatalca/İstanbul</p>
+                    <p><i class="fas fa-phone"></i> +90 212 436 4 555</p>
+                    <p><i class="fab fa-whatsapp"></i> +90 537 312 7695</p>
+                    <p><i class="fas fa-envelope"></i> info@lentosan.com.tr</p>
+                    
+                    <h4 style="margin-top: 1.5rem; color: var(--light-green);">2. Manchester Office - UK</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> 16 Tarleton Street, M13 9BS, Manchester</p>
+                    <p><i class="fas fa-phone"></i> +44 7471 407929</p>
+                    <p><i class="fas fa-envelope"></i> info@lentosan.co.uk</p>
                 </div>
                 <div class="footer-links">
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="products.html">Products</a></li>
-                        <li><a href="applications.html">Applications</a></li>
-                        <li><a href="benefits.html">Benefits</a></li>
                         <li><a href="specifications.html">Technical</a></li>
                         <li><a href="about.html">About Us</a></li>
                         <li><a href="contact.html">Contact</a></li>
@@ -353,28 +510,34 @@
         </footer>
     </div>
     
+    <!-- Overlay for sidebar -->
+    <div class="overlay" id="overlay"></div>
+    
     <!-- Navigation Menu (Hidden by default) -->
-    <div class="nav-menu">
+    <div class="nav-menu" style="background: linear-gradient(135deg, rgba(150,150,150,1) 0%, rgba(45,106,79,1) 50%, rgba(220,220,220,1) 100%);">
         <div class="nav-menu-header">
-            <div class="logo">
-                <img src="images/yourwall-logo-white.png" alt="YourWall Logo">
+            <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                <div style="flex: 1; text-align: center;">
+                </div>
+                <button class="close-menu">&times;</button>
             </div>
-            <button class="close-menu">&times;</button>
         </div>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="products.html" class="active">Products</a></li>
-                <li><a href="applications.html">Applications</a></li>
-                <li><a href="benefits.html">Benefits</a></li>
                 <li><a href="specifications.html">Technical</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
         <div class="nav-contact-info">
-            <p><i class="fas fa-phone"></i> +123 456 7890</p>
-            <p><i class="fas fa-envelope"></i> info@yourwallsystems.com</p>
+            <p><i class="fas fa-phone"></i> +90 212 436 4 555</p>
+            <p><i class="fab fa-whatsapp"></i> +90 537 312 7695</p>
+            <p><i class="fas fa-envelope"></i> info@lentosan.com.tr</p>
+            <div style="margin-top: 1rem; margin-left: -1rem; text-align: center; width: 60%;">
+                <img src="images/lifeWall.png" alt="Lentosan Logo" style="height: 220px; width: auto; max-width: 400px;">
+            </div>
         </div>
     </div>
     
@@ -402,11 +565,11 @@
     
     <!-- Mobile Navigation Quick Buttons -->
     <div class="mobile-nav-buttons">
-        <a href="tel:+1234567890" class="mobile-nav-button">
+        <a href="tel:+902124364555" class="mobile-nav-button">
             <i class="fas fa-phone"></i>
             <span>Call</span>
         </a>
-        <a href="mailto:info@yourwallsystems.com" class="mobile-nav-button">
+        <a href="mailto:info@lentosan.com.tr" class="mobile-nav-button">
             <i class="fas fa-envelope"></i>
             <span>Email</span>
         </a>
@@ -415,5 +578,33 @@
             <span>Top</span>
         </a>
     </div>
+    
+    <script>
+        // Overlay functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const overlay = document.getElementById('overlay');
+            const navMenu = document.querySelector('.nav-menu');
+            const menuToggle = document.querySelector('.menu-toggle');
+            const closeMenu = document.querySelector('.close-menu');
+            
+            // Show overlay and menu when hamburger is clicked
+            menuToggle.addEventListener('click', function() {
+                navMenu.classList.add('active');
+                overlay.classList.add('active');
+            });
+            
+            // Hide overlay and menu when close button is clicked
+            closeMenu.addEventListener('click', function() {
+                navMenu.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+            
+            // Hide overlay and menu when overlay is clicked
+            overlay.addEventListener('click', function() {
+                navMenu.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>

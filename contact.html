@@ -6,6 +6,25 @@
     <title>Contact Us | YourWall Systems</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/sideMenu.js"></script>
+    <style>
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 150;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -51,43 +70,8 @@
             <p>Get in touch with our team to discuss your project requirements</p>
         </section>
         
-        <!-- Contact Grid Section -->
+        <!-- Contact Information Section -->
         <section class="contact-grid">
-            <div class="contact-form">
-                <h2>SEND US A MESSAGE</h2>
-                <form id="contactForm" action="#" method="post">
-                    <div class="form-group">
-                        <label for="name">Full Name *</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="company">Company Name</label>
-                        <input type="text" id="company" name="company">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address *</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" name="phone">
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">Subject *</label>
-                        <input type="text" id="subject" name="subject" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Your Message *</label>
-                        <textarea id="message" name="message" rows="6" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <input type="checkbox" id="privacy" name="privacy" required>
-                        <label for="privacy">I agree to the <a href="#">privacy policy</a> and consent to being contacted regarding my inquiry</label>
-                    </div>
-                    <button type="submit" class="form-button">SEND MESSAGE</button>
-                </form>
-            </div>
-            
             <div class="contact-info">
                 <h2>CONTACT INFORMATION</h2>
                 
@@ -96,8 +80,18 @@
                         <i class="fas fa-map-marker-alt"></i>
                     </div>
                     <div class="contact-text">
-                        <h3>Headquarters</h3>
-                        <p>123 Construction Way<br>Building District<br>City, State 12345</p>
+                        <h3>1. The Factory - TURKEY</h3>
+                        <p>Kaleiçi Mahallesi, Gökçeali Caddesi, No: 39/1, 34540<br>Çatalca/İstanbul</p>
+                    </div>
+                </div>
+                
+                <div class="contact-detail">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h3>2. Manchester Office - UK</h3>
+                        <p>16 Tarleton Street, M13 9BS, Manchester</p>
                     </div>
                 </div>
                 
@@ -107,7 +101,17 @@
                     </div>
                     <div class="contact-text">
                         <h3>Phone</h3>
-                        <p>+123 456 7890 (Main)<br>+123 456 7891 (Support)</p>
+                        <p>Turkey: +90 212 436 4 555<br>UK: +44 7471 407929</p>
+                    </div>
+                </div>
+                
+                <div class="contact-detail">
+                    <div class="contact-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h3>WhatsApp</h3>
+                        <p>+90 537 312 7695</p>
                     </div>
                 </div>
                 
@@ -117,7 +121,7 @@
                     </div>
                     <div class="contact-text">
                         <h3>Email</h3>
-                        <p>info@yourwallsystems.com<br>support@yourwallsystems.com</p>
+                        <p>Turkey: info@lentosan.com.tr<br>UK: info@lentosan.co.uk</p>
                     </div>
                 </div>
                 
@@ -138,11 +142,6 @@
                     <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                     <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                 </div>
-                
-                <div class="contact-map">
-                    <!-- Placeholder for map iframe -->
-                    <div class="image-placeholder">Google Maps Location</div>
-                </div>
             </div>
         </section>
         
@@ -158,28 +157,28 @@
                         <div class="image-placeholder"><i class="fas fa-hard-hat" style="font-size: 3rem;"></i></div>
                     </div>
                     <h3>Technical Support</h3>
-                    <p>For technical queries and installation guidance<br>technical@yourwallsystems.com</p>
+                    <p>For technical queries and installation guidance<br>info@lentosan.com.tr</p>
                 </div>
                 <div class="application-card">
                     <div class="application-image">
                         <div class="image-placeholder"><i class="fas fa-calculator" style="font-size: 3rem;"></i></div>
                     </div>
                     <h3>Sales Department</h3>
-                    <p>For quotes, product information, and orders<br>sales@yourwallsystems.com</p>
+                    <p>For quotes, product information, and orders<br>info@lentosan.com.tr</p>
                 </div>
                 <div class="application-card">
                     <div class="application-image">
                         <div class="image-placeholder"><i class="fas fa-drafting-compass" style="font-size: 3rem;"></i></div>
                     </div>
                     <h3>Design Consultation</h3>
-                    <p>For architectural and design assistance<br>design@yourwallsystems.com</p>
+                    <p>For architectural and design assistance<br>info@lentosan.com.tr</p>
                 </div>
                 <div class="application-card">
                     <div class="application-image">
                         <div class="image-placeholder"><i class="fas fa-handshake" style="font-size: 3rem;"></i></div>
                     </div>
                     <h3>Partnership Inquiries</h3>
-                    <p>For distribution and collaboration opportunities<br>partners@yourwallsystems.com</p>
+                    <p>For distribution and collaboration opportunities<br>info@lentosan.co.uk</p>
                 </div>
             </div>
         </section>
@@ -214,24 +213,33 @@
         <section class="cta-section">
             <h2>NEED A QUICK RESPONSE?</h2>
             <p>Call our customer service team directly for immediate assistance</p>
-            <a href="tel:+1234567890" class="cta-button">CALL NOW: +123 456 7890</a>
+            <a href="tel:+902124364555" class="cta-button">CALL NOW: +90 212 436 4 555</a>
         </section>
         
         <!-- Footer -->
         <footer id="contact">
             <div class="footer-content">
                 <div class="footer-info">
-                    <h3>YourWall Systems</h3>
+                    <h3>Lentosan Construction Technologies</h3>
                     <p>Advanced modular walling solutions for modern construction</p>
-                    <p><i class="fas fa-map-marker-alt"></i> 123 Construction Way, Building District, City</p>
-                    <p><i class="fas fa-phone"></i> +123 456 7890</p>
-                    <p><i class="fas fa-envelope"></i> info@yourwallsystems.com</p>
+                    
+                    <h4 style="margin-top: 1.5rem; color: var(--light-green);">1. The Factory - TURKEY</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Kaleiçi Mahallesi, Gökçeali Caddesi, No: 39/1, 34540<br>Çatalca/İstanbul</p>
+                    <p><i class="fas fa-phone"></i> +90 212 436 4 555</p>
+                    <p><i class="fab fa-whatsapp"></i> +90 537 312 7695</p>
+                    <p><i class="fas fa-envelope"></i> info@lentosan.com.tr</p>
+                    
+                    <h4 style="margin-top: 1.5rem; color: var(--light-green);">2. Manchester Office - UK</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> 16 Tarleton Street, M13 9BS, Manchester</p>
+                    <p><i class="fas fa-phone"></i> +44 7471 407929</p>
+                    <p><i class="fas fa-envelope"></i> info@lentosan.co.uk</p>
                 </div>
                 <div class="footer-links">
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="products.html">Products</a></li>
+                        <li><a href="specifications.html">Technical</a></li>
                         <li><a href="about.html">About Us</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
@@ -251,28 +259,34 @@
         </footer>
     </div>
     
+    <!-- Overlay for sidebar -->
+    <div class="overlay" id="overlay"></div>
+    
     <!-- Navigation Menu (Hidden by default) -->
-    <div class="nav-menu">
+    <div class="nav-menu" style="background: linear-gradient(135deg, rgba(150,150,150,1) 0%, rgba(45,106,79,1) 50%, rgba(220,220,220,1) 100%);">
         <div class="nav-menu-header">
-            <div class="logo">
-                <img src="images/yourwall-logo-white.png" alt="YourWall Logo">
+            <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                <div style="flex: 1; text-align: center;">
+                </div>
+                <button class="close-menu">&times;</button>
             </div>
-            <button class="close-menu">&times;</button>
         </div>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="products.html">Products</a></li>
-                <li><a href="applications.html">Applications</a></li>
-                <li><a href="benefits.html">Benefits</a></li>
                 <li><a href="specifications.html">Technical</a></li>
                 <li><a href="contact.html" class="active">Contact</a></li>
             </ul>
         </nav>
         <div class="nav-contact-info">
-            <p><i class="fas fa-phone"></i> +123 456 7890</p>
-            <p><i class="fas fa-envelope"></i> info@yourwallsystems.com</p>
+            <p><i class="fas fa-phone"></i> +90 212 436 4 555</p>
+            <p><i class="fab fa-whatsapp"></i> +90 537 312 7695</p>
+            <p><i class="fas fa-envelope"></i> info@lentosan.com.tr</p>
+            <div style="margin-top: 1rem; margin-left: -1rem; text-align: center; width: 60%;">
+                <img src="images/lifeWall.png" alt="Lentosan Logo" style="height: 220px; width: auto; max-width: 400px;">
+            </div>
         </div>
     </div>
     
@@ -300,11 +314,11 @@
     
     <!-- Mobile Navigation Quick Buttons -->
     <div class="mobile-nav-buttons">
-        <a href="tel:+1234567890" class="mobile-nav-button">
+        <a href="tel:+902124364555" class="mobile-nav-button">
             <i class="fas fa-phone"></i>
             <span>Call</span>
         </a>
-        <a href="mailto:info@yourwallsystems.com" class="mobile-nav-button">
+        <a href="mailto:info@lentosan.com.tr" class="mobile-nav-button">
             <i class="fas fa-envelope"></i>
             <span>Email</span>
         </a>
@@ -314,6 +328,32 @@
         </a>
     </div>
     
-    
+    <script>
+        // Overlay functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const overlay = document.getElementById('overlay');
+            const navMenu = document.querySelector('.nav-menu');
+            const menuToggle = document.querySelector('.menu-toggle');
+            const closeMenu = document.querySelector('.close-menu');
+            
+            // Show overlay and menu when hamburger is clicked
+            menuToggle.addEventListener('click', function() {
+                navMenu.classList.add('active');
+                overlay.classList.add('active');
+            });
+            
+            // Hide overlay and menu when close button is clicked
+            closeMenu.addEventListener('click', function() {
+                navMenu.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+            
+            // Hide overlay and menu when overlay is clicked
+            overlay.addEventListener('click', function() {
+                navMenu.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
